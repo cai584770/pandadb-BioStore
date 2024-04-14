@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.opencypher:expressions-9.0:9.0-BLOB-SNAPSHOT-20220529">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/opencypher/expressions-9.0/9.0-BLOB-SNAPSHOT-20220529/expressions-9.0-9.0-BLOB-SNAPSHOT-20220529.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/opencypher/expressions-9.0/9.0-BLOB-SNAPSHOT-20220529/expressions-9.0-9.0-BLOB-SNAPSHOT-20220529-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/opencypher/expressions-9.0/9.0-BLOB-SNAPSHOT-20220529/expressions-9.0-9.0-BLOB-SNAPSHOT-20220529-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.opencypher:tck-api_2.12:1.0.0-1.0.0-M14">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/opencypher/tck-api_2.12/1.0.0-1.0.0-M14/tck-api_2.12-1.0.0-1.0.0-M14.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/opencypher/tck-api_2.12/1.0.0-1.0.0-M14/tck-api_2.12-1.0.0-1.0.0-M14-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/opencypher/tck-api_2.12/1.0.0-1.0.0-M14/tck-api_2.12-1.0.0-1.0.0-M14-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

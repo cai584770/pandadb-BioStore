@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.scalacheck:scalacheck_2.12:1.14.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/scalacheck/scalacheck_2.12/1.14.0/scalacheck_2.12-1.14.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/scalacheck/scalacheck_2.12/1.14.0/scalacheck_2.12-1.14.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/scalacheck/scalacheck_2.12/1.14.0/scalacheck_2.12-1.14.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="biosequence">
+    <output-path>$PROJECT_DIR$/out/artifacts/biosequence</output-path>
+    <root id="archive" name="biosequence.jar">
+      <element id="module-output" name="biosequence" />
+    </root>
+  </artifact>
+</component>
