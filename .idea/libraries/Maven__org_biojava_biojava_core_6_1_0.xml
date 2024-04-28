@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.biojava:biojava-core:6.1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/biojava/biojava-core/6.1.0/biojava-core-6.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/biojava/biojava-core/6.1.0/biojava-core-6.1.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/biojava/biojava-core/6.1.0/biojava-core-6.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

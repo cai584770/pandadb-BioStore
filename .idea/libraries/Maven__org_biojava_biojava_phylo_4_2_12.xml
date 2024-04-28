@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.biojava:biojava-phylo:4.2.12">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/biojava/biojava-phylo/4.2.12/biojava-phylo-4.2.12.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/biojava/biojava-phylo/4.2.12/biojava-phylo-4.2.12-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/biojava/biojava-phylo/4.2.12/biojava-phylo-4.2.12-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

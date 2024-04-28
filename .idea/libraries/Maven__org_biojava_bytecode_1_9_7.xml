@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.biojava:bytecode:1.9.7">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/biojava/bytecode/1.9.7/bytecode-1.9.7.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/biojava/bytecode/1.9.7/bytecode-1.9.7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/biojava/bytecode/1.9.7/bytecode-1.9.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

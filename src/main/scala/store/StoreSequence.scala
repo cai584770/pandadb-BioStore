@@ -30,15 +30,15 @@ object StoreSequence {
     val agctSequenceLength = agctSequence.length
     val lengthList = List((sequenceLength,agctSequenceLength))
 
+    val t1 = System.nanoTime()
     val sequence2bit = convertToBinaryArray(agctSequence)
-
+    println(System.nanoTime()-t1)
     val supplementaryInformation = Map(
       "LowerCasePosition" -> lowerCaseList,
       "NCasePosition" -> nCaseList,
       "OtherCaseList" -> otherCaseList,
       "Length" -> lengthList
     )
-
 
     (supplementaryInformation, sequence2bit)
   }

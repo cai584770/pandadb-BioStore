@@ -1,8 +1,13 @@
 package biosequence
 
+import org.biojava.nbio.core.alignment.template.SequencePair
+import org.biojava.nbio.core.sequence.DNASequence
+import org.biojava.nbio.core.sequence.compound.NucleotideCompound
 import org.grapheco.lynx.cypherplus.{Blob, DefaultFunctions}
 import org.grapheco.lynx.func.LynxProcedure
 import org.grapheco.lynx.types.property.LynxString
+import search.{Search, SequencePartitioning}
+import store.ReStoreSequence
 
 /**
  * @author cai584770
@@ -86,6 +91,32 @@ class BioSequenceFunctions extends DefaultFunctions{
       case _ => throw new RuntimeException("Invalid tuple elements")
     }
 
+  }
+
+  @LynxProcedure(name = "BioSequence.searchOne")
+  def searchOne(bioSequence: BioSequence,query:String): SequencePair[DNASequence, NucleotideCompound] = {
+    val supplyInformation = bioSequence.supplyInformation
+    val sequenceArrayByte = bioSequence.streamSource.offerStream(inputStream => StreamUtils.inputStreamToByteArray(inputStream))
+
+    val sequence = ReStoreSequence.from2bit(sequenceArrayByte, supplyInformation)
+    val targetArray = SequencePartitioning.partition(sequence,query.length)
+
+    val psa = Search.searchOne(query, targetArray)
+
+    psa
+  }
+
+  @LynxProcedure(name = "BioSequence.searchAll")
+  def searchAll(bioSequence: BioSequence, query: String): List[SequencePair[DNASequence, NucleotideCompound]] = {
+    val supplyInformation = bioSequence.supplyInformation
+    val sequenceArrayByte = bioSequence.streamSource.offerStream(inputStream => StreamUtils.inputStreamToByteArray(inputStream))
+
+    val sequence = ReStoreSequence.from2bit(sequenceArrayByte, supplyInformation)
+    val targetArray = SequencePartitioning.partition(sequence, query.length)
+
+    val psa = Search.searchAll(query, targetArray)
+
+    psa
   }
 
 }

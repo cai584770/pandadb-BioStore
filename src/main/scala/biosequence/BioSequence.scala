@@ -31,6 +31,8 @@ class BioSequence(val information:String, val supplyInformation:Map[String, List
     Array.concat(informationLengthBytes,supplyInformationLengthBytes,streamLengthBytes,informationBytes,supplyInformationBytes,streamBytes)
   }
 
+
+
   override def toString(): String = s"BioSequence(information=${information},length=${length})"
 
   override def subProperty(property: String): LynxValue = {
@@ -121,5 +123,7 @@ object BioSequence{
     }
 
   }
+
+
 
 }

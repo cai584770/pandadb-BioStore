@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: io.grpc:grpc-all:1.33.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/io/grpc/grpc-all/1.33.0/grpc-all-1.33.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/io/grpc/grpc-all/1.33.0/grpc-all-1.33.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/io/grpc/grpc-all/1.33.0/grpc-all-1.33.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

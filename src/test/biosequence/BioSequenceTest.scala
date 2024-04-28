@@ -10,35 +10,31 @@ import java.io.{File, FileInputStream}
  * @Version
  */
 class BioSequenceTest {
-  val inputpath = "D:/GithubRepository/biosequence/src/test/biosequence/data/chr1.fa"
-  val inputpath1 = "D:/GithubRepository/biosequence/src/test/biosequence/data/88_chr1.fa"
-  val inputpath2 = "D:/GithubRepository/biosequence/src/test/biosequence/data/chr2.fa"
+  val hg17_chr1 = "D:/GithubRepository/biosequence/src/test/biosequence/data/hg38_chr1.fa"
+  val pseudo88_chr1 = "D:/GithubRepository/biosequence/src/test/biosequence/data/pseudo88_chr1.fa"
 
   val TAIR10_chr1 = "D:/GithubRepository/biosequence/src/test/biosequence/data/TAIR10/TAIR10_chr1.fas"
   val TAIR10_chr2 = "D:/GithubRepository/biosequence/src/test/biosequence/data/TAIR10/TAIR10_chr2.fas"
   val TAIR10_chr3 = "D:/GithubRepository/biosequence/src/test/biosequence/data/TAIR10/TAIR10_chr3.fas"
   val TAIR10_chr4 = "D:/GithubRepository/biosequence/src/test/biosequence/data/TAIR10/TAIR10_chr4.fas"
   val TAIR10_chr5 = "D:/GithubRepository/biosequence/src/test/biosequence/data/TAIR10/TAIR10_chr5.fas"
+
   @Test
   def test01():Unit={
     var startTime = System.nanoTime()
-    val bioSequence = BioSequence.fromFile(inputpath1)
+    val bioSequence = BioSequence.fromFile(hg17_chr1)
     var endTime = System.nanoTime()
     var durationMs = (endTime - startTime) / 1000000.0
     println(s"import runtime：$durationMs ms")
 
-    val nCaseList: List[(Int, Int)] = bioSequence.supplyInformation.getOrElse("NCasePosition", List.empty) map {
-      case (a: Int, b: Int) => (a, b)
-      case _ => throw new RuntimeException("Invalid tuple elements")
-    }
     println(bioSequence.toString())
     println(bioSequence.length)
+    println(bioSequence.toBytes())
     println(bioSequence.information)
     println(bioSequence.subProperty("information"))
-    println(nCaseList.take(10))
 
     startTime = System.nanoTime()
-    BioSequence.exportSequence(bioSequence,"D:/GithubRepository/biosequence/src/test/biosequence/data/inputpath1_.fa")
+    BioSequence.exportSequence(bioSequence,"D:/GithubRepository/biosequence/src/test/biosequence/data/hg17_chr1_export.fa")
     endTime = System.nanoTime()
     durationMs = (endTime - startTime) / 1000000.0
     println(s"export runtime：$durationMs ms")
@@ -55,17 +51,20 @@ class BioSequenceTest {
 
   @Test
   def test03(): Unit = {
-
-    val bioSequence = BioSequence.fromFile(inputpath1)
-
-    BioSequence.exportSequence(bioSequence,"D:\\GithubRepository\\biosequence\\src\\test\\biosequence\\data/chr2.fa")
+    val bioSequence = BioSequence.fromFile(pseudo88_chr1)
+    println(bioSequence.toString())
+    println(bioSequence.length)
+    val bioSequence1 = BioSequence.fromBytes(bioSequence.toBytes())
+    println(bioSequence1.toString())
+    println(bioSequence1.length)
+    println(bioSequence1.getClass)
 
   }
 
   @Test
   def test04(): Unit = {
 
-    val bioSequence = BioSequence.fromFile(inputpath1)
+    val bioSequence = BioSequence.fromFile(pseudo88_chr1)
 //    println(bioSequence.toString())
 //    println(bioSequence.length)
 //    println(bioSequence.information)
