@@ -114,9 +114,9 @@ class BioSequenceFunctions extends DefaultFunctions{
     val sequence = ReStoreSequence.from2bit(sequenceArrayByte, supplyInformation)
     val targetArray = SequencePartitioning.partition(sequence, query.length)
 
-    val psa = Search.searchAll(query, targetArray)
+    val psas = Search.searchAll(query, targetArray)
 
-    psa
+    psas
   }
 
 }

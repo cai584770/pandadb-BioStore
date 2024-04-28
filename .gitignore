@@ -45,3 +45,6 @@ src/test/biosequence/data/TAIR10/TAIR10_chr4.fas
 src/test/biosequence/data/TAIR10/TAIR10_chr5.fas
 *.fas
 src/test/biosequence/data/TAIR10/TAIR10_chr1.fas
+*.fa
+*.zip
+*.ab
