@@ -1,8 +1,6 @@
-package biosequence
+package serialize
 
-import org.grapheco.lynx.cypherplus.blob.InputStreamSource
-
-import java.io.{ByteArrayInputStream, ByteArrayOutputStream, InputStream, ObjectOutputStream}
+import java.io.{ByteArrayOutputStream, InputStream}
 import java.nio.ByteBuffer
 
 /**
@@ -12,8 +10,9 @@ import java.nio.ByteBuffer
  */
 object StreamUtils {
 
-  /***
+  /** *
    * input stream to array byte
+   *
    * @param inputStream input stream
    * @return
    */
@@ -32,7 +31,7 @@ object StreamUtils {
     outputStream.toByteArray
   }
 
-  def int2BytesArray(intValue:Int):Array[Byte]={
+  def int2BytesArray(intValue: Int): Array[Byte] = {
     val byteBuffer: ByteBuffer = ByteBuffer.allocate(4)
     byteBuffer.putInt(intValue)
     byteBuffer.array()
@@ -40,4 +39,3 @@ object StreamUtils {
 
 
 }
-

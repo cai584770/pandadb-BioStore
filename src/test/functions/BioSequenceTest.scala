@@ -1,4 +1,4 @@
-package biosequence
+package functions
 
 import org.junit.jupiter.api.Test
 

@@ -1,6 +1,6 @@
 package fileprocess
 
-import biosequence.BioSequence
+import functions.BioSequence
 import fileprocess.FileUtils.writeBytesToFile
 import org.junit.Test
 import store.StoreSequence

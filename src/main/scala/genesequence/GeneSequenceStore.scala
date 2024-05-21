@@ -1,11 +1,11 @@
 package genesequence
 
-import biosequence.StreamUtils
 import fileprocess.FileProcess
 import genesequence.GeneType.{DNA, GeneType}
 import org.grapheco.lynx.cypherplus.{Blob, MimeType, MimeTypeFactory}
 import org.grapheco.lynx.cypherplus.blob.{BytesInputStreamSource, InputStreamSource}
 import serialize.Serialize.deserializeMap
+import serialize.StreamUtils
 import store.{ReStoreSequence, StoreSequence}
 
 import java.io.{BufferedWriter, File, FileWriter}
@@ -33,6 +33,11 @@ trait GeneSequenceStore[T <: GeneSequence] {
       MimeTypeFactory.fromText("application/octet-stream"),
       geneType)
   }
+
+  def fromURL(url: String): T = {
+    EMPTY
+  }
+
 
   def fromBytes(bytes: Array[Byte]): T = {
     val informationLength = ByteBuffer.wrap(bytes.slice(0, 4)).getInt
