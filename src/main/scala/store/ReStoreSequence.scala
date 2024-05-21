@@ -1,6 +1,9 @@
 package store
 
+import exception.GeneTypeException
 import fileprocess.FileNormalize
+import genesequence.GeneType
+import genesequence.GeneType.{DNA, GeneType}
 
 /**
  * @author cai584770
@@ -15,7 +18,7 @@ object ReStoreSequence {
    * @param supplementaryInformation sequence supple information: lower case start & length, N case start & length ,other case start & substring
    * @return sequence
    */
-  def from2bit(binaryArray: Array[Byte], supplementaryInformation: Map[String, List[(Any, Any)]]): String = {
+  def from2bit(binaryArray: Array[Byte], supplementaryInformation: Map[String, List[(Any, Any)]], geneType: GeneType = GeneType.DNA): String = {
     val lowerCaseList: List[(Int, Int)] = supplementaryInformation.getOrElse("LowerCasePosition", List.empty) map {
       case (a: Int, b: Int) => (a, b)
       case _ => throw new RuntimeException("Invalid tuple elements")
@@ -36,14 +39,15 @@ object ReStoreSequence {
       case _ => throw new RuntimeException("Invalid tuple elements")
     }
 
-    val binaryString = convertFromBinaryArray(binaryArray)
+    val binaryString = convertFromBinaryArray(binaryArray, geneType)
+    println(f"length:${lengthList.head._2}")
     val agctSequence = binaryString.substring(0, lengthList.head._2)
 
     val haveNoCaseSequence = insertNonACGT(agctSequence, otherCaseList)
     val haveNCaseSequence = insertN(haveNoCaseSequence,nCaseList)
     val haveLowerCaseSequence = restoreConsecutiveLowerCase(haveNCaseSequence,lowerCaseList)
 
-    FileNormalize.insertNewlines(haveLowerCaseSequence,50)
+    FileNormalize.insertNewlines(haveLowerCaseSequence,79)
   }
 
   /***
@@ -51,8 +55,12 @@ object ReStoreSequence {
    * @param bytes array[byte] to string
    * @return AGCT sequence
    */
-  def convertFromBinaryArray(bytes: Array[Byte]): String = {
-    val conversionMap = Map("00" -> 'A', "01" -> 'G', "10" -> 'C', "11" -> 'T')
+  def convertFromBinaryArray(bytes: Array[Byte],geneType: GeneType): String = {
+    val conversionMap = geneType match {
+      case GeneType.DNA => Map("00" -> 'A', "01" -> 'G', "10" -> 'C', "11" -> 'T')
+      case GeneType.RNA => Map("00" -> 'A', "01" -> 'G', "10" -> 'C', "11" -> 'U')
+      case _ => throw new GeneTypeException
+    }
     val binaryStringBuilder = new StringBuilder()
 
     for (byte <- bytes) {
