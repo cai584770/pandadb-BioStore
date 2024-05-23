@@ -1,7 +1,7 @@
 package align
 
 import exception.{AlignNotFoundException, GeneTypeException}
-import genesequence.{GeneSequence, GeneType}
+import biosequence.{GeneSequence, GeneType}
 import org.biojava.nbio.alignment.{Alignments, SimpleGapPenalty}
 import org.biojava.nbio.alignment.Alignments.PairwiseSequenceAlignerType
 import org.biojava.nbio.core.alignment.matrices.SubstitutionMatrixHelper

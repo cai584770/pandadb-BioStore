@@ -1,6 +1,6 @@
-package genesequence
+package biosequence
 
-import genesequence.GeneType.{DNA, GeneType}
+import biosequence.GeneType.{DNA, GeneType}
 import org.grapheco.lynx.cypherplus.{Blob, MimeType, MimeTypeFactory}
 import org.grapheco.lynx.cypherplus.blob.{BytesInputStreamSource, InputStreamSource}
 

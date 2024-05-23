@@ -2,8 +2,8 @@ package store
 
 import exception.GeneTypeException
 import fileprocess.FileNormalize
-import genesequence.GeneType
-import genesequence.GeneType.{DNA, GeneType}
+import biosequence.GeneType
+import biosequence.GeneType.{DNA, GeneType}
 
 /**
  * @author cai584770

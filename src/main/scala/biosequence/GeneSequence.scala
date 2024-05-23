@@ -1,16 +1,13 @@
-package genesequence
+package biosequence
 
-import functions.BioSequence
 import serialize.StreamUtils.int2BytesArray
-import genesequence.GeneType.GeneType
-import org.grapheco.lynx.cypherplus.{Blob, BlobExpand}
-import org.grapheco.lynx.cypherplus.blob.InputStreamSource
+import biosequence.GeneType.GeneType
+import org.grapheco.lynx.cypherplus.BlobExpand
 import org.grapheco.lynx.types.LynxValue
 import serialize.Serialize.serializeMap
 import serialize.StreamUtils
 import store.ReStoreSequence
 
-import scala.collection.immutable.Map
 
 /**
  * @author cai584770
@@ -49,7 +46,7 @@ trait GeneSequence extends BlobExpand{
     }
   }
 
-  override def toString(): String = s"BioSequence(information=${information},length=${length})"
+  override def toString(): String = s"GeneSequence(information=${information},length=${length},type=${geneType})"
 
 }
 

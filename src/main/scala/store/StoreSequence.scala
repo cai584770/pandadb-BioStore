@@ -2,8 +2,8 @@ package store
 
 import exception.GeneTypeException
 import fileprocess.FileNormalize
-import genesequence.GeneType
-import genesequence.GeneType.{DNA, GeneType, RNA}
+import biosequence.GeneType
+import biosequence.GeneType.{DNA, GeneType, RNA}
 
 import scala.collection.mutable.ListBuffer
 

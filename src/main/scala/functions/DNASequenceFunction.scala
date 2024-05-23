@@ -1,7 +1,7 @@
 package dnaSequence
 
 import align.Align
-import genesequence.DNASequence
+import biosequence.DNASequence
 import org.biojava.nbio.core.alignment.template.SequencePair
 import org.biojava.nbio.core.sequence.compound.NucleotideCompound
 import org.grapheco.lynx.cypherplus.DefaultFunctions

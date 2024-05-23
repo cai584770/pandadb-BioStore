@@ -1,4 +1,4 @@
-package genesequence
+package biosequence
 
 /**
  * @author cai584770

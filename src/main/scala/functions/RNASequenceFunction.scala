@@ -1,7 +1,7 @@
 package functions
 
 import align.Align
-import genesequence.RNASequence
+import biosequence.RNASequence
 import org.biojava.nbio.core.alignment.template.SequencePair
 import org.biojava.nbio.core.sequence.compound.NucleotideCompound
 import org.grapheco.lynx.cypherplus.DefaultFunctions

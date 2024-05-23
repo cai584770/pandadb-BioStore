@@ -37,5 +37,19 @@ object StreamUtils {
     byteBuffer.array()
   }
 
+  def long2ByteArray(value: Long): Array[Byte] = {
+    Array(
+      (value >> 56).toByte,
+      (value >> 48).toByte,
+      (value >> 40).toByte,
+      (value >> 32).toByte,
+      (value >> 24).toByte,
+      (value >> 16).toByte,
+      (value >> 8).toByte,
+      value.toByte
+    )
+  }
+
+
 
 }

@@ -1,4 +1,4 @@
-package genesequence
+package biosequence
 
 import fileprocess.FileNormalize.normalize
 import fileprocess.FileProcess.getInformationAndSequence
