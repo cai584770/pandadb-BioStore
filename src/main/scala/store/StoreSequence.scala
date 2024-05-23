@@ -1,7 +1,7 @@
 package store
 
 import exception.GeneTypeException
-import fileprocess.FileNormalize
+import file.FileNormalize
 import biosequence.GeneType
 import biosequence.GeneType.{DNA, GeneType, RNA}
 

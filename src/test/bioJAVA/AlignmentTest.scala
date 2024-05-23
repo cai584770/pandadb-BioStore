@@ -1,6 +1,6 @@
 package bioJAVA
 
-import fileprocess.FileProcess.getInformationAndSequence
+import file.FileProcess.getInformationAndSequence
 import org.biojava.nbio.alignment.Alignments.PairwiseSequenceAlignerType
 import org.biojava.nbio.alignment.template.GapPenalty
 import org.biojava.nbio.alignment.{Alignments, SimpleGapPenalty}

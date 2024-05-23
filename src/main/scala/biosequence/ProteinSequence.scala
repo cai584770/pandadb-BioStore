@@ -1,6 +1,6 @@
 package biosequence
 
-import fileprocess.FileProcess
+import file.FileProcess
 import org.grapheco.lynx.cypherplus.Blob.fromBytes
 import org.grapheco.lynx.cypherplus.{BlobExpand, MimeType, MimeTypeFactory}
 import org.grapheco.lynx.cypherplus.blob.{BytesInputStreamSource, InputStreamSource}

@@ -1,7 +1,7 @@
 package biosequence
 
-import fileprocess.FileNormalize.normalize
-import fileprocess.FileProcess.getInformationAndSequence
+import file.FileNormalize.normalize
+import file.FileProcess.getInformationAndSequence
 import org.junit.Test
 
 import java.nio.file.{Files, Paths}

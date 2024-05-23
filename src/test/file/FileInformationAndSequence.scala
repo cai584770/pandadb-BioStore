@@ -1,4 +1,4 @@
-package fileprocess
+package file
 
 import org.junit.jupiter.api.Test
 

@@ -1,4 +1,4 @@
-package fileprocess
+package file
 
 import java.io.{File, FileInputStream, FileOutputStream, IOException, OutputStreamWriter}
 

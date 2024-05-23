@@ -1,4 +1,4 @@
-package fileprocess
+package file
 
 import org.junit.Test
 import store.StoreSequence.{findConsecutiveLowerCasePositions, removeAndRecord, removeAndRecordN, to2bit}

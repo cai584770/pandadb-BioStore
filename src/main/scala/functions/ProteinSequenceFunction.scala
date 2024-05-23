@@ -10,7 +10,7 @@ import org.grapheco.lynx.types.property.LynxString
  * @date 2024/5/23 9:35
  * @Version
  */
-class ProteinFunction extends DefaultFunctions{
+class ProteinSequenceFunction extends DefaultFunctions{
   @LynxProcedure(name = "ProteinSequence.fromURL")
   override def fromURL(url: LynxString): ProteinSequence = {
     ProteinSequence.fromURL(url.value)

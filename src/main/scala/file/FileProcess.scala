@@ -1,10 +1,10 @@
-package fileprocess
+package file
 
 import java.io.{File, PrintWriter}
 import java.nio.file.{Files, Paths, StandardOpenOption}
 import scala.io.Source
-import fileprocess.FileNormalize
-import fileprocess.FileNormalize.{normalize, remove}
+import file.FileNormalize
+import file.FileNormalize.{normalize, remove}
 
 /** todo
  * @author cai584770

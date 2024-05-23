@@ -1,7 +1,7 @@
-package fileprocess
+package file
 
 import functions.BioSequence
-import fileprocess.FileUtils.writeBytesToFile
+import file.FileUtils.writeBytesToFile
 import org.junit.Test
 import store.StoreSequence
 

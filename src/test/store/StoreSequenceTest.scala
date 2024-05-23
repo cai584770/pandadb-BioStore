@@ -1,6 +1,6 @@
 package store
 
-import fileprocess.FileProcess
+import file.FileProcess
 import org.junit.jupiter.api.Test
 import store.StoreSequence.to2bit
 
