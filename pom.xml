@@ -20,13 +20,13 @@
             <artifactId>pandadb-java-driver</artifactId>
             <version>0.4.7-SNAPSHOT-20240411</version>
         </dependency>
-        <dependency>
-            <groupId>org.grapheco</groupId>
-            <artifactId>lynx-rpcplus</artifactId>
-            <version>0.1.0-SNAPSHOT-20240110</version>
-        </dependency>
 <!--        <dependency>-->
-<!--            <groupId>org.grapheco</g    roupId>-->
+<!--            <groupId>org.grapheco</groupId>-->
+<!--            <artifactId>lynx-rpcplus</artifactId>-->
+<!--            <version>0.1.0-SNAPSHOT-20240110</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.grapheco</groupId>-->
 <!--            <artifactId>lynx-cypherplus</artifactId>-->
 <!--            <version>0.1-SNAPSHOT-20240110</version>-->
 <!--        </dependency>-->
@@ -78,8 +78,33 @@
             <artifactId>sequencing</artifactId>
             <version>1.9.7</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.github.samtools/htsjdk -->
+        <dependency>
+            <groupId>com.github.samtools</groupId>
+            <artifactId>htsjdk</artifactId>
+            <version>3.0.5</version>
+        </dependency>
 
-
+        <dependency>
+            <groupId>org.grapheco</groupId>
+            <artifactId>lynx</artifactId>
+            <version>0.6.6</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.grapheco</groupId>-->
+<!--            <artifactId>plugin</artifactId>-->
+<!--            <version>0.5.0-alpha</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.grapheco</groupId>
+            <artifactId>pandadb-plugin</artifactId>
+            <version>0.5.0-alpha</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.12.8</version>
+        </dependency>
     </dependencies>
     
 </project>

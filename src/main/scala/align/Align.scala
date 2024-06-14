@@ -1,7 +1,8 @@
 package align
 
-import exception.{AlignNotFoundException, GeneTypeException}
-import biosequence.{GeneSequence, GeneType}
+import biopanda.sequence.{BioSequenceType}
+import exception.{AlignNotFoundException, BioSequenceTypeException}
+import biosequence.GeneSequence
 import org.biojava.nbio.alignment.{Alignments, SimpleGapPenalty}
 import org.biojava.nbio.alignment.Alignments.PairwiseSequenceAlignerType
 import org.biojava.nbio.core.alignment.matrices.SubstitutionMatrixHelper
@@ -17,9 +18,9 @@ import org.biojava.nbio.core.sequence.compound.NucleotideCompound
 object Align {
 
   def local(querySequence: String, targetGeneSequence: GeneSequence): SequencePair[DNASequence, NucleotideCompound]={
-    val (target, query) = targetGeneSequence.geneType match {
-      case GeneType.DNA => (new DNASequence(targetGeneSequence.getSequence), new DNASequence(querySequence))
-      case _ => throw new GeneTypeException
+    val (target, query) = targetGeneSequence.bioSequenceType match {
+      case BioSequenceType.DNA => (new DNASequence(targetGeneSequence.getSequence), new DNASequence(querySequence))
+      case _ => throw new BioSequenceTypeException
     }
 
     val gapP = new SimpleGapPenalty()
@@ -37,9 +38,9 @@ object Align {
   }
 
   def global(querySequence: String, targetGeneSequence: GeneSequence): SequencePair[DNASequence, NucleotideCompound] = {
-    val (target, query) = targetGeneSequence.geneType match {
-      case GeneType.DNA => (new DNASequence(targetGeneSequence.getSequence), new DNASequence(querySequence))
-      case _ => throw new GeneTypeException
+    val (target, query) = targetGeneSequence.bioSequenceType match {
+      case BioSequenceType.DNA => (new DNASequence(targetGeneSequence.getSequence), new DNASequence(querySequence))
+      case _ => throw new BioSequenceTypeException
     }
 
     val gapP = new SimpleGapPenalty()

@@ -1,12 +1,13 @@
 package biosequence
 
-import file.FileProcess
-import biosequence.GeneType.{DNA, GeneType}
+import biopanda.sequence.BioSequenceType.BioSequenceType
+import biopanda.sequence.{BioSequenceType}
 import org.grapheco.lynx.cypherplus.{Blob, MimeType, MimeTypeFactory}
 import org.grapheco.lynx.cypherplus.blob.{BytesInputStreamSource, InputStreamSource}
 import serialize.Serialize.deserializeMap
 import serialize.StreamUtils
 import store.{ReStoreSequence, StoreSequence}
+import utils.file.FileProcess
 
 import java.io.{BufferedWriter, File, FileWriter}
 import java.nio.ByteBuffer
@@ -18,20 +19,20 @@ import java.nio.file.{Files, Paths}
  * @Version
  */
 trait GeneSequenceStore[T <: GeneSequence] {
-  protected def createInstance(information: String, supplyInformation: Map[String, List[(Any, Any)]], streamSource: InputStreamSource, length: Long, mimeType: MimeType,geneType: GeneType): T
+  protected def createInstance(information: String, supplyInformation: Map[String, List[(Any, Any)]], streamSource: InputStreamSource, length: Long, mimeType: MimeType,bioSequenceType: BioSequenceType): T
 
   protected def emptyInstance: T
   val EMPTY: T = emptyInstance
 
-  def fromFile(filePath: String, geneType: GeneType = GeneType.DNA):T={
+  def fromFile(filePath: String, bioSequenceType: BioSequenceType = BioSequenceType.DNA):T={
     val (information, sequence) = FileProcess.getInformationAndSequence(filePath)
-    val (supplyInformation, streamSource) = StoreSequence.to2bit(sequence, geneType)
+    val (supplyInformation, streamSource) = StoreSequence.to2bit(sequence, bioSequenceType)
     createInstance(information,
       supplyInformation,
       new BytesInputStreamSource(streamSource),
       sequence.length,
       MimeTypeFactory.fromText("application/octet-stream"),
-      geneType)
+      bioSequenceType)
   }
 
   def fromURL(url: String): T = {
@@ -58,13 +59,13 @@ trait GeneSequenceStore[T <: GeneSequence] {
         case _ => 0L
       }).getOrElse(0L),
       MimeTypeFactory.fromText("application/octet-stream"),
-      GeneType.DNA
+      BioSequenceType.DNA
     )
   }
 
 
 
-  def export(geneSequence: T, filePath: String, geneType: GeneType = GeneType.DNA): Unit = {
+  def export(geneSequence: T, filePath: String, bioSequenceType: BioSequenceType = BioSequenceType.DNA): Unit = {
     val directoryPath = Paths.get(filePath).getParent.toString
     val directory = Paths.get(directoryPath)
 
@@ -81,7 +82,7 @@ trait GeneSequenceStore[T <: GeneSequence] {
     val supplyInformation = geneSequence.supplyInformation
     val sequenceArrayByte = geneSequence.streamSource.offerStream(inputStream => StreamUtils.inputStreamToByteArray(inputStream))
 
-    val sequence = ReStoreSequence.from2bit(sequenceArrayByte, supplyInformation, geneType)
+    val sequence = ReStoreSequence.from2bit(sequenceArrayByte, supplyInformation, bioSequenceType)
 
     val result = information + "\n" + sequence
 

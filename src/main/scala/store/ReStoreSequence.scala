@@ -1,9 +1,10 @@
 package store
 
-import exception.GeneTypeException
-import file.FileNormalize
-import biosequence.GeneType
-import biosequence.GeneType.{DNA, GeneType}
+
+import biopanda.sequence.BioSequenceType
+import biopanda.sequence.BioSequenceType.BioSequenceType
+import exception.BioSequenceTypeException
+import utils.file.FileNormalize
 
 /**
  * @author cai584770
@@ -18,7 +19,7 @@ object ReStoreSequence {
    * @param supplementaryInformation sequence supple information: lower case start & length, N case start & length ,other case start & substring
    * @return sequence
    */
-  def from2bit(binaryArray: Array[Byte], supplementaryInformation: Map[String, List[(Any, Any)]], geneType: GeneType = GeneType.DNA): String = {
+  def from2bit(binaryArray: Array[Byte], supplementaryInformation: Map[String, List[(Any, Any)]], bioSequenceType: BioSequenceType = BioSequenceType.DNA): String = {
     val lowerCaseList: List[(Int, Int)] = supplementaryInformation.getOrElse("LowerCasePosition", List.empty) map {
       case (a: Int, b: Int) => (a, b)
       case _ => throw new RuntimeException("Invalid tuple elements")
@@ -39,7 +40,7 @@ object ReStoreSequence {
       case _ => throw new RuntimeException("Invalid tuple elements")
     }
 
-    val binaryString = convertFromBinaryArray(binaryArray, geneType)
+    val binaryString = convertFromBinaryArray(binaryArray, bioSequenceType)
     println(f"length:${lengthList.head._2}")
     val agctSequence = binaryString.substring(0, lengthList.head._2)
 
@@ -50,16 +51,18 @@ object ReStoreSequence {
     FileNormalize.insertNewlines(haveLowerCaseSequence,79)
   }
 
+
+
   /***
    *
    * @param bytes array[byte] to string
    * @return AGCT sequence
    */
-  def convertFromBinaryArray(bytes: Array[Byte],geneType: GeneType): String = {
-    val conversionMap = geneType match {
-      case GeneType.DNA => Map("00" -> 'A', "01" -> 'G', "10" -> 'C', "11" -> 'T')
-      case GeneType.RNA => Map("00" -> 'A', "01" -> 'G', "10" -> 'C', "11" -> 'U')
-      case _ => throw new GeneTypeException
+  def convertFromBinaryArray(bytes: Array[Byte],bioSequenceType:BioSequenceType): String = {
+    val conversionMap = bioSequenceType match {
+      case BioSequenceType.DNA => Map("00" -> 'A', "01" -> 'G', "10" -> 'C', "11" -> 'T')
+      case BioSequenceType.RNA => Map("00" -> 'A', "01" -> 'G', "10" -> 'C', "11" -> 'U')
+      case _ => throw new BioSequenceTypeException
     }
     val binaryStringBuilder = new StringBuilder()
 

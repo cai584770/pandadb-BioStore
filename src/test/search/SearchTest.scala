@@ -1,6 +1,6 @@
 package search
 
-import file.FileProcess.getInformationAndSequence
+import utils.file.FileProcess.getInformationAndSequence
 import org.junit.Test
 import store.StoreSequence.to2bit
 

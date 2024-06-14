@@ -2,6 +2,7 @@ package file
 
 import org.junit.Test
 import store.StoreSequence.{findConsecutiveLowerCasePositions, removeAndRecord, removeAndRecordN, to2bit}
+import utils.file.{FileNormalize, FileProcess}
 
 import java.io.{BufferedReader, BufferedWriter, File, FileReader, FileWriter}
 import java.util

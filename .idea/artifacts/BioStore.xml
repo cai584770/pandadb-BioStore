@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BioStore">
+    <output-path>$PROJECT_DIR$/.idea/artifacts</output-path>
+    <root id="archive" name="BioStore.jar">
+      <element id="module-output" name="biosequence" />
+    </root>
+  </artifact>
+</component>

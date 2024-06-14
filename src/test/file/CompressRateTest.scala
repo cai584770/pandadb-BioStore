@@ -1,9 +1,10 @@
 package file
 
-import functions.BioSequence
-import file.FileUtils.writeBytesToFile
+import biosequence.DNASequence
+import utils.file.FileUtils.writeBytesToFile
 import org.junit.Test
 import store.StoreSequence
+import utils.file.FileProcess
 
 import java.io.{FileOutputStream, IOException, OutputStreamWriter}
 
@@ -20,7 +21,7 @@ class CompressRateTest {
 
   @Test
   def test01():Unit= {
-    val bioSequence = BioSequence.fromFile(inputFilePath)
+    val bioSequence = DNASequence.fromFile(inputFilePath)
     writeBytesToFile(bioSequence.toBytes(),outputFilePath)
 
     val  le = bioSequence.length
@@ -48,7 +49,7 @@ class CompressRateTest {
   @Test
   def test03(): Unit = {
     val filepath = inputFilePath
-    val bioSequence = BioSequence.fromFile(filepath)
+    val bioSequence = DNASequence.fromFile(filepath)
     val (information, sequence) = FileProcess.getInformationAndSequence(filepath)
     val (supplyInformation, streamSource) = StoreSequence.to2bit(sequence)
     val fileName = "D:\\GithubRepository\\biosequence\\src\\test\\fileprocess\\data\\test1.ab"

@@ -1,12 +1,12 @@
 package biosequence
 
-import file.FileProcess
 import org.grapheco.lynx.cypherplus.Blob.fromBytes
 import org.grapheco.lynx.cypherplus.{BlobExpand, MimeType, MimeTypeFactory}
 import org.grapheco.lynx.cypherplus.blob.{BytesInputStreamSource, InputStreamSource}
 import org.grapheco.lynx.types.LynxValue
 import serialize.StreamUtils
 import serialize.StreamUtils.long2ByteArray
+import utils.file.FileProcess
 
 import java.io.{BufferedWriter, File, FileWriter}
 import java.nio.ByteBuffer

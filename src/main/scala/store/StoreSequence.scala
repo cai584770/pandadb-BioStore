@@ -1,9 +1,9 @@
 package store
 
-import exception.GeneTypeException
-import file.FileNormalize
-import biosequence.GeneType
-import biosequence.GeneType.{DNA, GeneType, RNA}
+import biopanda.sequence.BioSequenceType.{BioSequenceType, DNA}
+import biopanda.sequence.{BioSequenceType}
+import exception.{BioSequenceTypeException}
+import utils.file.FileNormalize
 
 import scala.collection.mutable.ListBuffer
 
@@ -22,7 +22,7 @@ object StoreSequence {
    *         "OtherCaseList" -> otherCaseList
    *         Array[Byte] -> AGCT binary array
    */
-  def to2bit(data: String,geneType: GeneType = GeneType.DNA): (Map[String, List[(Any, Any)]], Array[Byte]) = {
+  def to2bit(data: String,bioSequenceType: BioSequenceType = BioSequenceType.DNA): (Map[String, List[(Any, Any)]], Array[Byte]) = {
     val sequence = FileNormalize.remove(data)
     val sequenceLength = sequence.length
 
@@ -35,7 +35,7 @@ object StoreSequence {
 
     println(f"sequenceLength:$sequenceLength,sequenceLength:$agctSequenceLength")
 
-    val sequence2bit =  convertToBinaryArray(agctSequence, geneType)
+    val sequence2bit =  convertToBinaryArray(agctSequence, bioSequenceType)
 
     val supplementaryInformation = Map(
       "LowerCasePosition" -> lowerCaseList,
@@ -52,11 +52,11 @@ object StoreSequence {
    * @param s sequence
    * @return AGCT to binary array, A->00, G->01, C->10, T->11
    */
-  def convertToBinaryArray(s: String, geneType: GeneType): Array[Byte] = {
-    val conversionMap = geneType match {
+  def convertToBinaryArray(s: String, bioSequenceType: BioSequenceType): Array[Byte] = {
+    val conversionMap = bioSequenceType match {
       case DNA => Map('A' -> "00", 'G' -> "01", 'C' -> "10", 'T' -> "11")
-      case RNA => Map('A' -> "00", 'G' -> "01", 'C' -> "10", 'U' -> "11")
-      case _ => throw new GeneTypeException
+      case BioSequenceType.RNA => Map('A' -> "00", 'G' -> "01", 'C' -> "10", 'U' -> "11")
+      case _ => throw new BioSequenceTypeException
     }
 
     val binaryStringBuilder = new StringBuilder()

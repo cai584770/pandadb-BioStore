@@ -1,10 +1,10 @@
 package store
 
-import file.FileNormalize.remove
-import file.FileProcess
+import utils.file.FileNormalize.remove
 import org.junit.jupiter.api.Test
 import store.ReStoreSequence.from2bit
 import store.StoreSequence.to2bit
+import utils.file.FileProcess
 
 /**
  * @author cai584770

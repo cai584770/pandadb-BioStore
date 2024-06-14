@@ -1,8 +1,8 @@
 package store
 
-import file.FileProcess
 import org.junit.jupiter.api.Test
 import store.StoreSequence.to2bit
+import utils.file.FileProcess
 
 import scala.collection.mutable.ListBuffer
 

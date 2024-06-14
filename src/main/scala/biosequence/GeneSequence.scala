@@ -1,7 +1,8 @@
 package biosequence
 
+import biopanda.sequence.BioSequenceType
+import biopanda.sequence.BioSequenceType.BioSequenceType
 import serialize.StreamUtils.int2BytesArray
-import biosequence.GeneType.GeneType
 import org.grapheco.lynx.cypherplus.BlobExpand
 import org.grapheco.lynx.types.LynxValue
 import serialize.Serialize.serializeMap
@@ -17,12 +18,12 @@ import store.ReStoreSequence
 trait GeneSequence extends BlobExpand{
   val information:String
   val supplyInformation:Map[String, List[(Any, Any)]]
-  val geneType:GeneType
+  val bioSequenceType: BioSequenceType
 
   def getSequence: String = {
     val sequenceArrayByte = streamSource.offerStream(inputStream => StreamUtils.inputStreamToByteArray(inputStream))
 
-    ReStoreSequence.from2bit(sequenceArrayByte, supplyInformation, geneType)
+    ReStoreSequence.from2bit(sequenceArrayByte, supplyInformation, bioSequenceType)
   }
 
   override def toBytes():Array[Byte] = {
@@ -46,7 +47,7 @@ trait GeneSequence extends BlobExpand{
     }
   }
 
-  override def toString(): String = s"GeneSequence(information=${information},length=${length},type=${geneType})"
+  override def toString(): String = s"GeneSequence(information=${information},length=${length},type=${bioSequenceType})"
 
 }
 

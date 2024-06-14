@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.grapheco:pandadb-plugin:0.5.0-alpha">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/grapheco/pandadb-plugin/0.5.0-alpha/pandadb-plugin-0.5.0-alpha.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/grapheco/pandadb-plugin/0.5.0-alpha/pandadb-plugin-0.5.0-alpha-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../plugin/apache-maven-3.8.6/repository/org/grapheco/pandadb-plugin/0.5.0-alpha/pandadb-plugin-0.5.0-alpha-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

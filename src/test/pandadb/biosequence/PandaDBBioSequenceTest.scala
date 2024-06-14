@@ -19,7 +19,7 @@ class PandaDBBioSequenceTest {
   @Test
   def insertTest():Unit= {
     val t1 = System.nanoTime()
-    db.query("create (n: plant {name:'TAIR10',species:'Arabidopsis thaliana',chromosome1: BioSequence.fromFile('/home/cjw/program/data/TAIR10/chr1.fa'),chromosome2: BioSequence.fromFile('/home/cjw/program/data/TAIR10/chr2.fa'),chromosome3: BioSequence.fromFile('/home/cjw/program/data/TAIR10/chr3.fa'),chromosome4: BioSequence.fromFile('/home/cjw/program/data/TAIR10/chr4.fa'),chromosome5: BioSequence.fromFile('/home/cjw/program/data/TAIR10/chr5.fa')})")
+    db.query("create (n: plant {name:'TAIR10',species:'Arabidopsis thaliana',chromosome1: DNASequence.fromFile('/home/cjw/program/data/TAIR10/chr1.fa'),chromosome2: BioSequence.fromFile('/home/cjw/program/data/TAIR10/chr2.fa'),chromosome3: BioSequence.fromFile('/home/cjw/program/data/TAIR10/chr3.fa'),chromosome4: BioSequence.fromFile('/home/cjw/program/data/TAIR10/chr4.fa'),chromosome5: BioSequence.fromFile('/home/cjw/program/data/TAIR10/chr5.fa')})")
     println(s"insert time:${(System.nanoTime()-t1)/1000000.0}")
 //    db.query("create (n: plant {name:'TAIR10',species:'Arabidopsis thaliana'})")
 //    db.query("create (n: plant {name:'TAIR10',species:'Arabidopsis thaliana'})")

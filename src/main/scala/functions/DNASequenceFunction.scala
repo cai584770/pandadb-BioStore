@@ -43,7 +43,7 @@ class DNASequenceFunction extends DefaultFunctions{
     dnaSequence.supplyInformation
   }
 
-  @LynxProcedure(name = "DNASequence.getSupplyInformation")
+  @LynxProcedure(name = "DNASequence.length")
   def length(dnaSequence: DNASequence): Long = {
     dnaSequence.length
   }

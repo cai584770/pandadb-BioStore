@@ -1,5 +1,6 @@
 package functions
 
+import biosequence.DNASequence
 import org.junit.jupiter.api.Test
 
 import java.io.{File, FileInputStream}
@@ -22,7 +23,7 @@ class BioSequenceTest {
   @Test
   def test01():Unit={
     var startTime = System.nanoTime()
-    val bioSequence = BioSequence.fromFile(hg17_chr1)
+    val bioSequence = DNASequence.fromFile(hg17_chr1)
     var endTime = System.nanoTime()
     var durationMs = (endTime - startTime) / 1000000.0
     println(s"import runtime：$durationMs ms")
@@ -34,7 +35,7 @@ class BioSequenceTest {
     println(bioSequence.subProperty("information"))
 
     startTime = System.nanoTime()
-    BioSequence.exportSequence(bioSequence,"D:/GithubRepository/biosequence/src/test/biosequence/data/hg17_chr1_export.fa")
+    DNASequence.export(bioSequence,"D:/GithubRepository/biosequence/src/test/biosequence/data/hg17_chr1_export.fa")
     endTime = System.nanoTime()
     durationMs = (endTime - startTime) / 1000000.0
     println(s"export runtime：$durationMs ms")
@@ -43,7 +44,7 @@ class BioSequenceTest {
 
   @Test
   def test02(): Unit = {
-    val emptyBiosequence = BioSequence.EMPTY
+    val emptyBiosequence = DNASequence.EMPTY
     println(emptyBiosequence)
 
   }
@@ -51,10 +52,10 @@ class BioSequenceTest {
 
   @Test
   def test03(): Unit = {
-    val bioSequence = BioSequence.fromFile(pseudo88_chr1)
+    val bioSequence = DNASequence.fromFile(pseudo88_chr1)
     println(bioSequence.toString())
     println(bioSequence.length)
-    val bioSequence1 = BioSequence.fromBytes(bioSequence.toBytes())
+    val bioSequence1 = DNASequence.fromBytes(bioSequence.toBytes())
     println(bioSequence1.toString())
     println(bioSequence1.length)
     println(bioSequence1.getClass)
@@ -64,7 +65,7 @@ class BioSequenceTest {
   @Test
   def test04(): Unit = {
 
-    val bioSequence = BioSequence.fromFile(pseudo88_chr1)
+    val bioSequence = DNASequence.fromFile(pseudo88_chr1)
 //    println(bioSequence.toString())
 //    println(bioSequence.length)
 //    println(bioSequence.information)
@@ -73,7 +74,7 @@ class BioSequenceTest {
 
     val bio = bioSequence.toBytes()
 
-    val bioS = BioSequence.fromBytes(bio)
+    val bioS = DNASequence.fromBytes(bio)
     println("---")
 //    println(bioS.toString())
 //    println(bioS.length)
@@ -83,7 +84,7 @@ class BioSequenceTest {
     println("---")
     println(bioSequence.equals(bioS))
     println("___")
-    BioSequence.exportSequence(bioS,"D:/GithubRepository/biosequence/src/test/biosequence/data/inputpath1_1.fa")
+    DNASequence.export(bioS,"D:/GithubRepository/biosequence/src/test/biosequence/data/inputpath1_1.fa")
   }
 
   @Test

@@ -1,7 +1,7 @@
 package biosequence
 
-import file.FileNormalize.normalize
-import file.FileProcess.getInformationAndSequence
+import utils.file.FileNormalize.normalize
+import utils.file.FileProcess.getInformationAndSequence
 import org.junit.Test
 
 import java.nio.file.{Files, Paths}
@@ -33,7 +33,7 @@ class GeneSequenceTest {
   @Test
   def test02(): Unit = {
     val rnaSequence = RNASequence.fromFile(rnaFile)
-    println(rnaSequence.geneType)
+    println(rnaSequence.bioSequenceType)
     val rnaSequenceAB = rnaSequence.toBytes()
     val rnaSequence1 = RNASequence.fromBytes(rnaSequenceAB)
 
