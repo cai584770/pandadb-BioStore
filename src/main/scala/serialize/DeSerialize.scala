@@ -2,11 +2,14 @@ package serialize
 
 import biopanda.alignment.{BAM, SAM}
 import biopanda.alignment.record.{AlignmentRecord, ProgramRecord, ReadGroupRecord, SAMHeader, SequenceRecord}
+import biopanda.highthroughput.FASTQ
+import biopanda.highthroughput.entity.{Identifier, Quality, ShortRead}
 import biopanda.sequence.Sequence
 import org.grapheco.pandadb.plugin.AnyType
 
 import java.io.{ByteArrayInputStream, ObjectInputStream}
 import java.nio.ByteBuffer
+import java.nio.charset.StandardCharsets
 
 /**
  * @author cai584770
@@ -15,9 +18,45 @@ import java.nio.ByteBuffer
  */
 object DeSerialize {
 
+  def decodeFASTQ(bytes: Array[Byte]): FASTQ = {
+    val buffer = ByteBuffer.wrap(bytes)
+
+    val identifierLength = buffer.getInt()
+    val identifierBytes = new Array[Byte](identifierLength)
+    buffer.get(identifierBytes)
+    val identifier = decodeIdentifier(identifierBytes)
+
+    val shortReadLength = buffer.getInt()
+    val shortReadBytes = new Array[Byte](shortReadLength)
+    buffer.get(shortReadBytes)
+    val shortRead = new ShortRead(new String(shortReadBytes,"UTF-8"))
+
+    val qualityLength = buffer.getInt()
+    val qualityBytes = new Array[Byte](qualityLength)
+    buffer.get(qualityBytes)
+    val quality = new Quality(new String(qualityBytes,"UTF-8")
+    )
+
+    new FASTQ(identifier, shortRead, quality)
+  }
+
+  def decodeIdentifier(bytes: Array[Byte]): Identifier = {
+    val buffer = ByteBuffer.wrap(bytes)
+
+    val seqIdLength = buffer.getInt()
+    val seqIdBytes = new Array[Byte](seqIdLength)
+    buffer.get(seqIdBytes)
+    val seqId = new String(seqIdBytes, StandardCharsets.UTF_8)
+
+    val readNum = buffer.getInt()
+    val length = buffer.getInt()
+
+    new Identifier(seqId,readNum,length)
+  }
+
   def decodeSequence(encodedData: Array[Byte]): Sequence = {
     new Sequence {
-      override val sequence: String = new String(encodedData, "UTF-8")
+      override val seq: String = new String(encodedData,"UTF-8")
     }
   }
 
@@ -36,10 +75,7 @@ object DeSerialize {
     val streamSource = new Array[Byte](streamSourceLength)
     buffer.get(streamSource)
 
-    new BAM {
-      override val header: SAMHeader = header
-      override val streamSource: Array[Byte] = streamSource
-    }
+    new BAM(header,streamSource)
   }
 
 

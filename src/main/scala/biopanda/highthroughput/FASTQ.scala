@@ -1,29 +1,27 @@
 package biopanda.highthroughput
 
+import biopanda.`type`.FASTQType
+import biopanda.highthroughput.entity.{Identifier, Quality, ShortRead}
 import org.grapheco.lynx.types.LynxType
 import org.grapheco.pandadb.plugin.AnyType
 import org.grapheco.pandadb.plugin.annotations.ExtensionType
+import serialize.DeSerialize.decodeFASTQ
+import serialize.Serialize.encodeFASTQ
 
 /**
  * @author cai584770
  * @date 2024/6/11 10:48
  * @Version
  */
-case class Identifier(seqId: String, readNum: Int, length: Int)
-
-case class Quality(quality: String)
-
-case class ShortRead(read: String)
-
 @ExtensionType
-case class FASTQ(identifier: Identifier, shortRead: ShortRead, separator: String, quality: Quality) extends AnyType {
-  override def serialize(): Array[Byte] = ???
+case class FASTQ(identifier: Identifier, shortRead: ShortRead, quality: Quality) extends AnyType {
+  override def serialize(): Array[Byte] = encodeFASTQ(identifier, shortRead, quality)
 
-  override def deserialize(bytes: Array[Byte]): AnyType = ???
+  override def deserialize(bytes: Array[Byte]): AnyType = decodeFASTQ(bytes)
 
-  override def value: Any = ???
+  override def value: Any = identifier.toString
 
-  override def lynxType: LynxType = ???
+  override def lynxType: LynxType = new FASTQType
 }
 
 
@@ -37,7 +35,7 @@ object FASTQ {
     lines.grouped(4).collect {
       case List(identifier, sequence, separator, quality) =>
         val id = parseIdentifier(identifier)
-        FASTQ(id, ShortRead(sequence), separator, Quality(quality))
+        FASTQ(id, ShortRead(sequence), Quality(quality))
     }.toList
 
   }

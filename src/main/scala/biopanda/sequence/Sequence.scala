@@ -19,7 +19,6 @@ import scala.io.Source
  * @date 2024/6/10 11:13
  * @Version
  */
-
 @ExtensionType
 trait Sequence extends AnyType{
   val seq:String

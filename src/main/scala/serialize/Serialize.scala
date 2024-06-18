@@ -1,6 +1,7 @@
 package serialize
 
 import biopanda.alignment.record.{AlignmentRecord, ProgramRecord, ReadGroupRecord, SAMHeader, SequenceRecord}
+import biopanda.highthroughput.entity.{Identifier, Quality, ShortRead}
 import org.grapheco.lynx.cypherplus.blob.InputStreamSource
 import org.grapheco.pandadb.plugin.AnyType
 
@@ -13,6 +14,43 @@ import java.nio.ByteBuffer
  * @Version
  */
 object Serialize {
+
+  def encodeFASTQ(identifier: Identifier, shortRead: ShortRead, quality: Quality): Array[Byte] = {
+    val identifierAB = identifier.serialize()
+    val shortReadAB = shortRead.serialize()
+    val qualityAB = quality.serialize()
+
+    val identifierABLength = identifierAB.length
+    val shortReadABLength = shortReadAB.length
+    val qualityABLength = qualityAB.length
+
+    val totalLength = 4 + identifierABLength+4 +shortReadABLength+4+qualityABLength
+    val buffer = ByteBuffer.allocate(totalLength)
+
+    buffer.putInt(identifierABLength)
+    buffer.put(identifier.serialize())
+    buffer.putInt(shortReadABLength)
+    buffer.put(shortRead.serialize())
+    buffer.putInt(qualityABLength)
+    buffer.put(quality.serialize())
+
+    buffer.array()
+
+  }
+
+  def encodeIdentifier(seqId: String, readNum: Int, length: Int): Array[Byte] = {
+    val seqIdBytes = seqId.getBytes("UTF-8")
+    val seqIdLength = seqIdBytes.length
+    val totalLength = 4 + seqIdLength + 4 + 4
+    val buffer = ByteBuffer.allocate(totalLength)
+
+    buffer.putInt(seqIdLength)
+    buffer.put(seqIdBytes)
+    buffer.putInt(readNum)
+    buffer.putInt(length)
+
+    buffer.array()
+  }
 
   def encodeSequence(sequence:String):Array[Byte]={
     sequence.getBytes("UTF-8")

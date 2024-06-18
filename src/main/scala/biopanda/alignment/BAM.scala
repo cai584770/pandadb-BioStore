@@ -11,6 +11,7 @@ import serialize.Serialize.encodeBAM
 import utils.format.SAMandBAM
 
 import java.io.{ByteArrayOutputStream, File}
+import scala.collection.JavaConverters.asScalaIteratorConverter
 
 
 /**
@@ -73,6 +74,19 @@ object BAM {
     }
 
     new BAM(SAMandBAM.getHeader(samFileHeader), byteArrayOutputStream.toByteArray)
+  }
+
+  def fromBAMFile(filePath:String):BAM={
+    val f = new File(filePath)
+    val samReader = SamReaderFactory.makeDefault().open(f)
+    val samHeader = SAMandBAM.getHeader(samReader.getFileHeader)
+    val baos = new ByteArrayOutputStream()
+    val samWriter = new SAMFileWriterFactory().makeBAMWriter(samReader.getFileHeader, true, baos)
+    samReader.iterator().asScala.foreach(samWriter.addAlignment)
+    samWriter.close()
+    val streamSource = baos.toByteArray
+
+    new BAM(samHeader, streamSource)
   }
 
   //  def toSam(bam: BAM): SAM = {
