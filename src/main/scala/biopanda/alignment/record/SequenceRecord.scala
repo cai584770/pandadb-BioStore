@@ -14,9 +14,9 @@ import serialize.Serialize.encodeSequenceRecord
  * @Version
  */
 @ExtensionType
-class SequenceRecord(name: String,length: Int) extends AnyType {
+class SequenceRecord(name: String, length: Int) extends AnyType {
 
-  override def serialize(): Array[Byte] = encodeSequenceRecord(name,length)
+  override def serialize(): Array[Byte] = encodeSequenceRecord(name, length)
 
   override def deserialize(bytes: Array[Byte]): AnyType = decodeSequenceRecord(bytes)
 

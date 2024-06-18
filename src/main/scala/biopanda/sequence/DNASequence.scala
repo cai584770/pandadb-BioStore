@@ -14,7 +14,9 @@ import org.grapheco.pandadb.plugin.annotations.ExtensionType
  * @Version
  */
 @ExtensionType
-class DNASequence(sequence: String) extends Sequence(sequence) {
+class DNASequence(sequence: String) extends Sequence {
+  override val seq: String = sequence
+
   val bioSequenceType: BioSequenceType.Value = BioSequenceType.DNA
 
   override def lynxType: LynxType = new DNASequenceType
@@ -23,8 +25,6 @@ class DNASequence(sequence: String) extends Sequence(sequence) {
 
 
 //  override def toString: String = "DNA Sequence:"+(if (sequence.length > 97) (sequence.substring(0, 97)+"...") else sequence + "...")
-
-
 }
 
 

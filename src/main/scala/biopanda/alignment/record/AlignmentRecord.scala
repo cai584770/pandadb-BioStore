@@ -20,7 +20,7 @@ class AlignmentRecord(readName: String, flag: Int, referenceName: String, alignm
 
   override def lynxType: LynxType = new AlignmentRecordType
 
-  override def serialize() : Array[Byte] = encodeAlignmentRecord(readName, flag, referenceName, alignmentStart, mappingQuality, cigar, mateReferenceName, mateAlignmentStart, inferredInsertSize, readString, baseQualityString, attributes)
+  override def serialize(): Array[Byte] = encodeAlignmentRecord(readName, flag, referenceName, alignmentStart, mappingQuality, cigar, mateReferenceName, mateAlignmentStart, inferredInsertSize, readString, baseQualityString, attributes)
 
   override def deserialize(bytes: Array[Byte]): AnyType = decodeAlignmentRecord(bytes)
 

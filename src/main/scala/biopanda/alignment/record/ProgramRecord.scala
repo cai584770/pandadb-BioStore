@@ -13,9 +13,9 @@ import serialize.Serialize.encodeProgramRecord
  * @Version
  */
 @ExtensionType
-class ProgramRecord(id: String,programName: String,commandLine: String,version: String) extends AnyType{
+class ProgramRecord(id: String, programName: String, commandLine: String, version: String) extends AnyType {
 
-  override def serialize(): Array[Byte] = encodeProgramRecord(id,programName,commandLine,version)
+  override def serialize(): Array[Byte] = encodeProgramRecord(id, programName, commandLine, version)
 
   override def deserialize(bytes: Array[Byte]): AnyType = decodeProgramRecord(bytes)
 

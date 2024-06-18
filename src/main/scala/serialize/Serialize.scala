@@ -14,6 +14,10 @@ import java.nio.ByteBuffer
  */
 object Serialize {
 
+  def encodeSequence(sequence:String):Array[Byte]={
+    sequence.getBytes("UTF-8")
+  }
+
   def encodeBAM(header: SAMHeader,streamSource: Array[Byte]):Array[Byte]={
     val headerAB = header.serialize()
 

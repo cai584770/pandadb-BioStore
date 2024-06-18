@@ -11,11 +11,10 @@ import org.grapheco.pandadb.plugin.annotations.ExtensionType
  * @Version
  */
 @ExtensionType
-class ProteinSequence(sequence: String) extends Sequence(sequence) {
+class ProteinSequence(sequence: String) extends Sequence {
+  override val seq: String = sequence
   val bioSequenceType: BioSequenceType.Value = BioSequenceType.Protein
 
   override def lynxType: LynxType = new ProteinSequenceType
-
-
 
 }

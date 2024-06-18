@@ -2,6 +2,7 @@ package serialize
 
 import biopanda.alignment.{BAM, SAM}
 import biopanda.alignment.record.{AlignmentRecord, ProgramRecord, ReadGroupRecord, SAMHeader, SequenceRecord}
+import biopanda.sequence.Sequence
 import org.grapheco.pandadb.plugin.AnyType
 
 import java.io.{ByteArrayInputStream, ObjectInputStream}
@@ -13,6 +14,13 @@ import java.nio.ByteBuffer
  * @Version
  */
 object DeSerialize {
+
+  def decodeSequence(encodedData: Array[Byte]): Sequence = {
+    new Sequence {
+      override val sequence: String = new String(encodedData, "UTF-8")
+    }
+  }
+
   def decodeBAM(encodedData: Array[Byte]): BAM = {
     val buffer = ByteBuffer.wrap(encodedData)
 

@@ -12,8 +12,8 @@ import serialize.StreamUtils.{int2BytesArray, long2ByteArray}
  * @Version
  */
 @ExtensionType
-class RNASequence(sequence: String) extends Sequence(sequence) {
-
+class RNASequence(sequence: String) extends Sequence {
+  override val seq: String = sequence
   val bioSequenceType: BioSequenceType.Value = BioSequenceType.RNA
 
   override def lynxType: LynxType = new RNASequenceType

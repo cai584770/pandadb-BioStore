@@ -1,7 +1,6 @@
-package biopanda.file
+package biopanda.sequence
 
-import biopanda.`type`.{FASTAType, SequenceType}
-import biopanda.sequence.BioSequenceType
+import biopanda.`type`.FASTAType
 import biopanda.sequence.BioSequenceType.{BioSequenceType, DNA, Protein, RNA}
 import exception.BioSequenceTypeException
 import org.grapheco.lynx.types.{LynxType, LynxValue}
@@ -23,7 +22,7 @@ import java.nio.charset.StandardCharsets
  */
 
 @ExtensionType
-trait FASTA  extends AnyType{
+trait FASTA extends AnyType {
   val information: String
   val supplyInformation: Option[Map[String, List[(Any, Any)]]]
   val streamSource: Array[Byte]
@@ -117,7 +116,7 @@ object FASTA {
     val supplyInformation = deserializeMap(bytes.slice(17 + informationLength, 17 + informationLength + supplyInformationLength))
     val streamSource = bytes.slice(17 + informationLength + supplyInformationLength, bytes.length)
 
-    new FASTAImpl(information, Some(supplyInformation), streamSource,sequenceType match {
+    new FASTAImpl(information, Some(supplyInformation), streamSource, sequenceType match {
       case 0 => DNA
       case 1 => RNA
       case 2 => Protein

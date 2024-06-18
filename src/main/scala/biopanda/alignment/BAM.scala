@@ -3,7 +3,6 @@ package biopanda.alignment
 import biopanda.`type`.BAMType
 import biopanda.alignment.record.SAMHeader
 import htsjdk.samtools._
-import org.grapheco.lynx.cypherplus.blob.{BytesInputStreamSource, InputStreamSource}
 import org.grapheco.lynx.types.{LynxType, LynxValue}
 import org.grapheco.pandadb.plugin.AnyType
 import org.grapheco.pandadb.plugin.annotations.ExtensionType
@@ -20,10 +19,7 @@ import java.io.{ByteArrayOutputStream, File}
  * @Version
  */
 @ExtensionType
-trait BAM extends AnyType {
-  val header: SAMHeader
-  val streamSource: Array[Byte]
-
+class BAM(header: SAMHeader, streamSource: Array[Byte]) extends AnyType {
   override def serialize(): Array[Byte] = encodeBAM(header, streamSource)
 
   override def deserialize(bytes: Array[Byte]): BAM = decodeBAM(bytes)
@@ -44,8 +40,6 @@ trait BAM extends AnyType {
 }
 
 object BAM {
-  private class BAMImpl(val header: SAMHeader, val streamSource: InputStreamSource)
-    extends BAM {}
 
   def fromSAMFile(file: File): BAM = {
     var samReader: SamReader = null
@@ -78,7 +72,7 @@ object BAM {
       }
     }
 
-    new BAMImpl(SAMandBAM.getHeader(samFileHeader)),byteArrayOutputStream.toByteArray)
+    new BAM(SAMandBAM.getHeader(samFileHeader), byteArrayOutputStream.toByteArray)
   }
 
   //  def toSam(bam: BAM): SAM = {

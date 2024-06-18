@@ -1,4 +1,4 @@
-package biopanda.file
+package biopanda.highthroughput
 
 import org.grapheco.lynx.types.LynxType
 import org.grapheco.pandadb.plugin.AnyType
@@ -9,7 +9,7 @@ import org.grapheco.pandadb.plugin.annotations.ExtensionType
  * @date 2024/6/11 10:48
  * @Version
  */
-  case class Identifier(seqId: String, readNum: Int, length: Int)
+case class Identifier(seqId: String, readNum: Int, length: Int)
 
 case class Quality(quality: String)
 

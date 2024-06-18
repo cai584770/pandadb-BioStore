@@ -1,8 +1,7 @@
 package utils.format
 
-import biopanda.alignment.record.SAMHeader
-import htsjdk.samtools.SAMFileHeader
-
+import biopanda.alignment.record.{ProgramRecord, ReadGroupRecord, SAMHeader, SequenceRecord}
+import htsjdk.samtools.{SAMFileHeader, SAMFileWriter, SAMFileWriterFactory, SamReader, SamReaderFactory}
 
 import java.io.{ByteArrayOutputStream, File}
 import scala.collection.JavaConverters.collectionAsScalaIterableConverter
@@ -14,21 +13,26 @@ import scala.collection.JavaConverters.collectionAsScalaIterableConverter
  */
 object SAMandBAM {
 
+  /***
+   * getSAMHeader from SAMFileHeader
+   * @param samHeader
+   * @return
+   */
   def getHeader(samHeader:SAMFileHeader):SAMHeader={
     val version = samHeader.getVersion
     val sortOrder = samHeader.getSortOrder.name()
     val sequenceDictionary = samHeader.getSequenceDictionary.getSequences.asScala.map(seq =>
-      SequenceRecord(seq.getSequenceName, seq.getSequenceLength)
+      new SequenceRecord(seq.getSequenceName, seq.getSequenceLength)
     ).toSeq
     val readGroups = samHeader.getReadGroups.asScala.map(rg =>
-      ReadGroupRecord(rg.getReadGroupId, rg.getSample, rg.getLibrary, rg.getPlatform)
+      new ReadGroupRecord(rg.getReadGroupId, rg.getSample, rg.getLibrary, rg.getPlatform)
     ).toSeq
     val programRecords = samHeader.getProgramRecords.asScala.map(pr =>
-      ProgramRecord(pr.getId, pr.getProgramName, pr.getCommandLine, pr.getProgramVersion)
+      new ProgramRecord(pr.getId, pr.getProgramName, pr.getCommandLine, pr.getProgramVersion)
     ).toSeq
     val comments = samHeader.getComments.asScala.toSeq
 
-    SAMHeader(version, sortOrder, sequenceDictionary, readGroups, programRecords, comments)
+    new SAMHeader(version, sortOrder, sequenceDictionary, readGroups, programRecords, comments)
   }
 
   /***

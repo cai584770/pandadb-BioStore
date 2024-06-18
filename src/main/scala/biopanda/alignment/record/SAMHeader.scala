@@ -4,11 +4,9 @@ import biopanda.`type`.SAMHeaderType
 import org.grapheco.lynx.types.LynxType
 import org.grapheco.pandadb.plugin.AnyType
 import org.grapheco.pandadb.plugin.annotations.ExtensionType
-import serialize.Serialize.{encodeSAMHeader, seqToBytes, stringToBytes}
-import serialize.DeSerialize.{bytesToSeq, bytesToString, decodeSAMHeader}
+import serialize.DeSerialize.decodeSAMHeader
+import serialize.Serialize.encodeSAMHeader
 
-import java.io.{ByteArrayInputStream, ByteArrayOutputStream, ObjectInputStream, ObjectOutputStream}
-import java.nio.ByteBuffer
 
 /**
  * @author cai584770
@@ -24,4 +22,5 @@ class SAMHeader(version: String, sortOrder: String, sequenceDictionary: Seq[Sequ
   override def value: Any = version
 
   override def lynxType: LynxType = new SAMHeaderType
+
 }
