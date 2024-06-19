@@ -46,9 +46,9 @@ object ReStoreSequence {
 
     val haveNoCaseSequence = insertNonACGT(agctSequence, otherCaseList)
     val haveNCaseSequence = insertN(haveNoCaseSequence,nCaseList)
-    val haveLowerCaseSequence = restoreConsecutiveLowerCase(haveNCaseSequence,lowerCaseList)
 
-    FileNormalize.insertNewlines(haveLowerCaseSequence,79)
+    restoreConsecutiveLowerCase(haveNCaseSequence,lowerCaseList)
+
   }
 
 

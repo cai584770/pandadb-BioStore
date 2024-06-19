@@ -9,9 +9,11 @@ import org.grapheco.pandadb.plugin.annotations.ExtensionType
 import serialize.DeSerialize.deserializeMap
 import serialize.Serialize.mapToBytes
 import serialize.StreamUtils.{int2BytesArray, long2ByteArray}
+import store.ReStoreSequence.from2bit
 import store.{ReStoreSequence, StoreSequence}
-import utils.file.FileProcess
+import utils.file.{FileNormalize, FileProcess}
 
+import java.io.{BufferedWriter, FileWriter}
 import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
 
@@ -75,6 +77,8 @@ trait FASTA extends AnyType {
     }
   }
 
+  def getSequence: String = from2bit(streamSource, supplyInformation.getOrElse(Map.empty))
+
   override def toString: String = s"FASTA(information=${information},sequence length=${
     supplyInformation.flatMap { map =>
       map.get("length").flatMap {
@@ -122,6 +126,21 @@ object FASTA {
       case 2 => Protein
       case _ => throw new BioSequenceTypeException
     })
+
+  }
+
+  def export(fasta: FASTA, outFilePath: String): Unit = {
+    val identificationLine = ">" + fasta.information + "\n"
+
+    val sequence = from2bit(fasta.streamSource, fasta.supplyInformation.getOrElse(Map.empty))
+
+    val writer = new BufferedWriter(new FileWriter(outFilePath))
+    try {
+      writer.write(identificationLine)
+      writer.write(FileNormalize.insertNewlines(sequence, 79))
+    } finally {
+      writer.close()
+    }
 
   }
 

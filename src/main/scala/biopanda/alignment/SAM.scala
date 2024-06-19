@@ -10,7 +10,7 @@ import serialize.DeSerialize.decodeSAM
 import serialize.Serialize.encodeSAM
 import utils.format.SAMandBAM
 
-import java.io.File
+import java.io.{ByteArrayInputStream, File, FileOutputStream}
 import scala.collection.JavaConverters._
 
 /**
@@ -56,39 +56,7 @@ object SAM {
     new SAM(samHeader, records)
   }
 
-  def exportToFile(sam: SAM, file: File): Unit = {
-    //    val writer = new PrintWriter(file)
-    //
-    //    val header = sam.value
-    //    val records = sam.recordSeq
-    //
-    //    try {
-    //      writer.println(s"@HD\tVN:${header}\tSO:${sam.header.sortOrder}")
-    //
-    //      sam.header.sequenceDictionary.foreach { seq =>
-    //        writer.println(s"@SQ\tSN:${seq.name}\tLN:${seq.length}")
-    //      }
-    //
-    //      sam.header.readGroups.foreach { rg =>
-    //        writer.println(s"@RG\tID:${rg.id}\tSM:${rg.sample}\tLB:${rg.library}\tPL:${rg.platform}")
-    //      }
-    //
-    //      sam.header.programRecords.foreach { pr =>
-    //        writer.println(s"@PG\tID:${pr.id}\tPN:${pr.programName}\tVN:${pr.version}\tCL:${pr.commandLine}")
-    //      }
-    //
-    //      sam.header.comments.foreach { comment =>
-    //        writer.println(s"@CO\t${comment}")
-    //      }
-    //
-    //      sam.records.foreach { record =>
-    //        val attributesStr = record.attributes.map { case (tag, value) => s"$tag:$value" }.mkString("\t")
-    //        writer.println(s"${record.readName}\t${record.flag}\t${record.referenceName}\t${record.alignmentStart}\t${record.mappingQuality}\t${record.cigar}\t${record.mateReferenceName}\t${record.mateAlignmentStart}\t${record.inferredInsertSize}\t${record.readString}\t${record.baseQualityString}\t$attributesStr")
-    //      }
-    //    } finally {
-    //      writer.close()
-    //    }
-  }
+
 
 
 }

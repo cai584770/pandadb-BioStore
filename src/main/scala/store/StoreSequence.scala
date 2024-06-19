@@ -33,8 +33,6 @@ object StoreSequence {
     val agctSequenceLength = agctSequence.length
     val lengthList = List((sequenceLength,agctSequenceLength))
 
-    println(f"sequenceLength:$sequenceLength,sequenceLength:$agctSequenceLength")
-
     val sequence2bit =  convertToBinaryArray(agctSequence, bioSequenceType)
 
     val supplementaryInformation = Map(

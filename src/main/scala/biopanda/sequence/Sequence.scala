@@ -1,15 +1,20 @@
 package biopanda.sequence
 
 import biopanda.`type`.{DNASequenceType, SequenceType}
-import exception.NoFileException
+import biopanda.sequence.BioSequenceType.{DNA, Protein, RNA}
+import biopanda.sequence.FASTA.FASTAImpl
+import exception.{BioSequenceTypeException, NoFileException}
 import org.grapheco.lynx.cypherplus.Blob
 import org.grapheco.lynx.types.LynxType
 import org.grapheco.pandadb.plugin.AnyType
 import org.grapheco.pandadb.plugin.annotations.ExtensionType
 import serialize.DeSerialize.decodeSequence
 import serialize.Serialize.encodeSequence
+import store.ReStoreSequence.from2bit
+import store.StoreSequence
 
 import java.io.File
+import java.nio.charset.StandardCharsets
 import java.nio.file.{Files, Paths}
 import scala.io.Source
 
@@ -52,6 +57,20 @@ object Sequence{
 
   }
 
+  def fromFASTA(fasta: FASTA):Sequence={
+    fasta.bioSequenceType match {
+      case DNA | RNA =>
+        new SequenceImpl(from2bit(fasta.streamSource,fasta.supplyInformation.getOrElse(Map.empty)))
+      case Protein =>
+        new SequenceImpl(new String(fasta.streamSource,"UTF-8"))
+      case _ => throw new BioSequenceTypeException
+    }
+
+  }
+
+  def fromString(str:String):Sequence={
+    new SequenceImpl(str)
+  }
 
 
 }

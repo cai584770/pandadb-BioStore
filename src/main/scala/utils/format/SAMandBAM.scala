@@ -1,7 +1,8 @@
 package utils.format
 
+import biopanda.alignment.record.SAMHeader.SAMHeaderImpl
 import biopanda.alignment.record.{ProgramRecord, ReadGroupRecord, SAMHeader, SequenceRecord}
-import htsjdk.samtools.{SAMFileHeader, SAMFileWriter, SAMFileWriterFactory, SamReader, SamReaderFactory}
+import htsjdk.samtools.{SAMFileHeader, SAMFileWriter, SAMFileWriterFactory, SAMSequenceRecord, SamReader, SamReaderFactory}
 
 import java.io.{ByteArrayOutputStream, File}
 import scala.collection.JavaConverters.collectionAsScalaIterableConverter
@@ -32,8 +33,47 @@ object SAMandBAM {
     ).toSeq
     val comments = samHeader.getComments.asScala.toSeq
 
-    new SAMHeader(version, sortOrder, sequenceDictionary, readGroups, programRecords, comments)
+     new SAMHeaderImpl(version, sortOrder, sequenceDictionary, readGroups, programRecords, comments)
   }
+
+//  def fromSAMHeader(samHeader: SAMHeader): SAMFileHeader = {
+//    val header = new SAMFileHeader()
+//
+//    header.setSortOrder(SAMFileHeader.SortOrder.valueOf(samHeader.sortOrder))
+//
+//    val sequenceRecords = samHeader.sequences.map { seq =>
+//      new SAMSequenceRecord(seq.name, seq.length)
+//    }.asJava
+//    header.setSequenceDictionary(new SAMSequenceDictionary(sequenceRecords))
+//
+//    val readGroupRecords = samHeader.readGroups.map { rg =>
+//      val readGroup = new SAMReadGroupRecord(rg.id)
+//      readGroup.setSample(rg.sample)
+//      readGroup.setLibrary(rg.library)
+//      readGroup.setPlatform(rg.platform)
+//      readGroup
+//    }.asJava
+//    header.setReadGroups(readGroupRecords)
+//
+//    val programRecords = samHeader.programRecords.map { pr =>
+//      val programRecord = new SAMProgramRecord(pr.id)
+//      programRecord.setProgramName(pr.programName)
+//      programRecord.setCommandLine(pr.commandLine)
+//      programRecord.setProgramVersion(pr.programVersion)
+//      programRecord
+//    }.asJava
+//    header.setProgramRecords(programRecords)
+//
+//    val comments = samHeader.comments.asJava
+//    header.setComments(comments)
+//
+//    val versionField = classOf[SAMFileHeader].getDeclaredField("version")
+//    versionField.setAccessible(true)
+//    versionField.set(header, samHeader.version)
+//
+//    header
+//  }
+
 
   /***
    * convert sam file to Byte Stream

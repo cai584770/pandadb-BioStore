@@ -1,8 +1,7 @@
 package align
 
-import biopanda.sequence.{BioSequenceType}
+import biopanda.sequence.{BioSequenceType, FASTA}
 import exception.{AlignNotFoundException, BioSequenceTypeException}
-import biosequence.GeneSequence
 import org.biojava.nbio.alignment.{Alignments, SimpleGapPenalty}
 import org.biojava.nbio.alignment.Alignments.PairwiseSequenceAlignerType
 import org.biojava.nbio.core.alignment.matrices.SubstitutionMatrixHelper
@@ -17,7 +16,7 @@ import org.biojava.nbio.core.sequence.compound.NucleotideCompound
  */
 object Align {
 
-  def local(querySequence: String, targetGeneSequence: GeneSequence): SequencePair[DNASequence, NucleotideCompound]={
+  def local(querySequence: String, targetGeneSequence: FASTA): SequencePair[DNASequence, NucleotideCompound]={
     val (target, query) = targetGeneSequence.bioSequenceType match {
       case BioSequenceType.DNA => (new DNASequence(targetGeneSequence.getSequence), new DNASequence(querySequence))
       case _ => throw new BioSequenceTypeException
@@ -37,7 +36,7 @@ object Align {
     throw new AlignNotFoundException
   }
 
-  def global(querySequence: String, targetGeneSequence: GeneSequence): SequencePair[DNASequence, NucleotideCompound] = {
+  def global(querySequence: String, targetGeneSequence: FASTA): SequencePair[DNASequence, NucleotideCompound] = {
     val (target, query) = targetGeneSequence.bioSequenceType match {
       case BioSequenceType.DNA => (new DNASequence(targetGeneSequence.getSequence), new DNASequence(querySequence))
       case _ => throw new BioSequenceTypeException

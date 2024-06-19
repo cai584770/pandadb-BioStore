@@ -10,7 +10,7 @@ import serialize.DeSerialize.decodeBAM
 import serialize.Serialize.encodeBAM
 import utils.format.SAMandBAM
 
-import java.io.{ByteArrayOutputStream, File}
+import java.io.{ByteArrayOutputStream, File, FileOutputStream}
 import scala.collection.JavaConverters.asScalaIteratorConverter
 
 
@@ -20,7 +20,10 @@ import scala.collection.JavaConverters.asScalaIteratorConverter
  * @Version
  */
 @ExtensionType
-class BAM(header: SAMHeader, streamSource: Array[Byte]) extends AnyType {
+trait BAM extends AnyType {
+  val header: SAMHeader
+  val streamSource: Array[Byte]
+
   override def serialize(): Array[Byte] = encodeBAM(header, streamSource)
 
   override def deserialize(bytes: Array[Byte]): BAM = decodeBAM(bytes)
@@ -29,18 +32,10 @@ class BAM(header: SAMHeader, streamSource: Array[Byte]) extends AnyType {
 
   override def lynxType: LynxType = new BAMType
 
-  def subProperty(property: String): LynxValue = {
-    property match {
-      case "header" => LynxValue(header)
-      case _ => throw new Exception("No secondary attributes exist")
-    }
-
-  }
-
-
 }
 
 object BAM {
+  class BAMImpl(val header: SAMHeader,val streamSource: Array[Byte]) extends BAM{}
 
   def fromSAMFile(file: File): BAM = {
     var samReader: SamReader = null
@@ -73,8 +68,33 @@ object BAM {
       }
     }
 
-    new BAM(SAMandBAM.getHeader(samFileHeader), byteArrayOutputStream.toByteArray)
+    new BAMImpl(SAMandBAM.getHeader(samFileHeader), byteArrayOutputStream.toByteArray)
   }
+
+  def exportToSAM(bam: BAM, outputSAMFile: File): Unit = {
+    var bamReader: SamReader = null
+    var samWriter: SAMFileWriter = null
+
+    try {
+      bamReader = bam.header
+      val samFileHeader = bamReader.getFileHeader
+
+      samWriter = new SAMFileWriterFactory().makeSAMWriter(samFileHeader, true, outputSAMFile)
+
+      val bamIterator = bamReader.iterator()
+      while (bamIterator.hasNext) {
+        samWriter.addAlignment(bamIterator.next())
+      }
+    } finally {
+      if (samWriter != null) {
+        samWriter.close()
+      }
+      if (bamReader != null) {
+        bamReader.close()
+      }
+    }
+  }
+
 
   def fromBAMFile(filePath:String):BAM={
     val f = new File(filePath)
@@ -86,11 +106,37 @@ object BAM {
     samWriter.close()
     val streamSource = baos.toByteArray
 
-    new BAM(samHeader, streamSource)
+    new BAMImpl(samHeader, streamSource)
   }
 
-  //  def toSam(bam: BAM): SAM = {
-  //    SAM(bam.header, bam.records)
-  //  }
+  def exportBAMToFile(bam: BAM, outputFile: File): Unit = {
+    val fileOutputStream = new FileOutputStream(outputFile)
+    try {
+      fileOutputStream.write(bam.streamSource)
+    } finally {
+      fileOutputStream.close()
+    }
+  }
+
+  def exportBAMToSAM(bam: BAM): SAM = {
+    val samReader = SamReaderFactory.makeDefault().open(new ByteArrayInputStream(bam.streamSource))
+    val header = samReader.getFileHeader
+    val records = samReader.iterator().asScala.toSeq
+    new SAM(header, records)
+  }
+
+  def exportBAMToSAMFile(bam: BAM, outputFile: File): Unit = {
+    var samWriter: SAMFileWriter = null
+    try {
+      val samReader = SamReaderFactory.makeDefault().open(new ByteArrayInputStream(bam.streamSource))
+      samWriter = new SAMFileWriterFactory().makeSAMWriter(samReader.getFileHeader, true, outputFile)
+      val samIterator = samReader.iterator()
+      while (samIterator.hasNext) {
+        samWriter.addAlignment(samIterator.next())
+      }
+    } finally {
+      if (samWriter != null) samWriter.close()
+    }
+  }
 
 }

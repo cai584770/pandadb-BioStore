@@ -14,7 +14,14 @@ import serialize.Serialize.encodeSAMHeader
  * @Version
  */
 @ExtensionType
-class SAMHeader(version: String, sortOrder: String, sequenceDictionary: Seq[SequenceRecord], readGroups: Seq[ReadGroupRecord], programRecords: Seq[ProgramRecord], comments: Seq[String]) extends AnyType {
+trait SAMHeader extends AnyType {
+  val version: String
+  val sortOrder: String
+  val sequenceDictionary: Seq[SequenceRecord]
+  val readGroups: Seq[ReadGroupRecord]
+  val programRecords: Seq[ProgramRecord]
+  val comments: Seq[String]
+
   override def serialize(): Array[Byte] = encodeSAMHeader(version, sortOrder, sequenceDictionary, readGroups, programRecords, comments)
 
   override def deserialize(bytes: Array[Byte]): SAMHeader = decodeSAMHeader(bytes)
@@ -22,5 +29,12 @@ class SAMHeader(version: String, sortOrder: String, sequenceDictionary: Seq[Sequ
   override def value: Any = version
 
   override def lynxType: LynxType = new SAMHeaderType
+
+
+
+}
+
+object SAMHeader{
+  class SAMHeaderImpl(val version: String,val sortOrder: String,val sequenceDictionary: Seq[SequenceRecord], val readGroups: Seq[ReadGroupRecord],val programRecords: Seq[ProgramRecord],val comments: Seq[String]) extends SAMHeader{}
 
 }

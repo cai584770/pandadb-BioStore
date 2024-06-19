@@ -9,8 +9,6 @@ import java.io.{File, FileInputStream, FileOutputStream, IOException, OutputStre
  */
 object FileUtils {
 
-
-
   def writeBytesToFile(byteArray: Array[Byte], fileName: String): Unit = {
     try {
       val fos = new FileOutputStream(fileName)

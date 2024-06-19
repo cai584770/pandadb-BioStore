@@ -1,5 +1,6 @@
 package serialize
 
+import biopanda.alignment.BAM.BAMImpl
 import biopanda.alignment.{BAM, SAM}
 import biopanda.alignment.record.{AlignmentRecord, ProgramRecord, ReadGroupRecord, SAMHeader, SequenceRecord}
 import biopanda.highthroughput.FASTQ
@@ -75,7 +76,7 @@ object DeSerialize {
     val streamSource = new Array[Byte](streamSourceLength)
     buffer.get(streamSource)
 
-    new BAM(header,streamSource)
+    new BAMImpl(header,streamSource)
   }
 
 
