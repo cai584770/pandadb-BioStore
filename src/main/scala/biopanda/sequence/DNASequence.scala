@@ -13,7 +13,7 @@ import scala.io.Source
  * @author cai584770
  * @date 2024/6/7 10:53
  * @Version
- */S
+ */
 @ExtensionType
 class DNASequence(sequence: String) extends Sequence {
   override val seq: String = sequence
