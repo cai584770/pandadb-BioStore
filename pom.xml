@@ -4,6 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+
     <groupId>groupId</groupId>
     <artifactId>biosequence</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -16,26 +17,18 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.grapheco.pandadb</groupId>
-            <artifactId>pandadb-java-driver</artifactId>
-            <version>0.4.7-SNAPSHOT-20240411</version>
+            <groupId>org.grapheco</groupId>
+            <artifactId>pandadb-plugin</artifactId>
+            <version>0.5.0-alpha</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.grapheco</groupId>-->
-<!--            <artifactId>lynx-rpcplus</artifactId>-->
-<!--            <version>0.1.0-SNAPSHOT-20240110</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.grapheco</groupId>-->
-<!--            <artifactId>lynx-cypherplus</artifactId>-->
-<!--            <version>0.1-SNAPSHOT-20240110</version>-->
-<!--        </dependency>-->
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.biojava</groupId>
             <artifactId>biojava-core</artifactId>
@@ -61,11 +54,11 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.biojava.thirdparty/forester -->
-        <dependency>
-            <groupId>org.biojava.thirdparty</groupId>
-            <artifactId>forester</artifactId>
-            <version>1.039</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.biojava.thirdparty</groupId>-->
+<!--            <artifactId>forester</artifactId>-->
+<!--            <version>1.039</version>-->
+<!--        </dependency>-->
         <!-- https://mvnrepository.com/artifact/org.biojava/biojava-genome -->
         <dependency>
             <groupId>org.biojava</groupId>
@@ -90,11 +83,6 @@
             <artifactId>lynx</artifactId>
             <version>0.6.6</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.grapheco</groupId>-->
-<!--            <artifactId>plugin</artifactId>-->
-<!--            <version>0.5.0-alpha</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.grapheco</groupId>
             <artifactId>pandadb-plugin</artifactId>
@@ -105,6 +93,7 @@
             <artifactId>scala-library</artifactId>
             <version>2.12.8</version>
         </dependency>
+
     </dependencies>
     
 </project>
