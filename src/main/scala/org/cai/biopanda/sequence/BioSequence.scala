@@ -1,11 +1,11 @@
 package org.cai.biopanda.sequence
 
 import org.cai.biopanda.opts.BioSequenceOpts
+import org.cai.serialize.Serialize.encodeString
 import org.grapheco.lynx.types.structural.LynxPropertyKey
 import org.grapheco.lynx.types.traits.HasProperty
 import org.grapheco.lynx.types.{LynxType, LynxValue}
 import org.grapheco.pandadb.plugin.typesystem.AnyType
-import serialize.Serialize.encodeString
 
 /**
  * @author cai584770

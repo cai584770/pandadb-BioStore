@@ -3,12 +3,12 @@ package org.cai.biopanda.sequence
 import org.cai.biopanda.extensiontype.FASTAType
 import org.cai.biopanda.opts.FASTAOpts
 import org.cai.biopanda.sequence.BioSequenceEnum.{BioSequenceType, DNA}
+import org.cai.serialize.Serialize.encodeFASTA
+import org.cai.store.ReStoreSequence.from2bit
 import org.grapheco.lynx.types.structural.LynxPropertyKey
 import org.grapheco.lynx.types.traits.HasProperty
 import org.grapheco.lynx.types.{LynxType, LynxValue}
 import org.grapheco.pandadb.plugin.typesystem.AnyType
-import serialize.Serialize.encodeFASTA
-import store.ReStoreSequence.from2bit
 
 /**
  * @author cai584770

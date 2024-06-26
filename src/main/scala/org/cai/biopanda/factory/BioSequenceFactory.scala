@@ -3,9 +3,9 @@ package org.cai.biopanda.factory
 import org.cai.biopanda.extensiontype.BioSequenceType
 import org.cai.biopanda.sequence.{BioSequence, FASTA}
 import org.cai.exception.NoFileException
+import org.cai.serialize.DeSerialize.decodeBioSequence
 import org.grapheco.lynx.types.LynxType
 import org.grapheco.pandadb.plugin.typesystem.TypeFactory
-import serialize.DeSerialize.decodeBioSequence
 
 import java.nio.file.{Files, Paths}
 import scala.io.Source

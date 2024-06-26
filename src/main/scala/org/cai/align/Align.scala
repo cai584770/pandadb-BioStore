@@ -38,7 +38,7 @@ object Align {
   }
 
   def global(querySequence: String, targetGeneSequence: FASTA): SequencePair[DNASequence, NucleotideCompound] = {
-    val (target, query) = targetGeneSequence.getSequence match {
+    val (target, query) = targetGeneSequence.getBioSequenceType match {
       case DNA => (new DNASequence(targetGeneSequence.getSequence), new DNASequence(querySequence))
       case _ => throw new BioSequenceTypeException
     }

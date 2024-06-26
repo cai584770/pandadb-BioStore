@@ -1,0 +1,5 @@
+org.cai.biopanda.plugin.BioSequencePlugin
+org.cai.biopanda.plugin.DNASequencePlugin
+org.cai.biopanda.plugin.FASTAPlugin
+org.cai.biopanda.plugin.ProteinSequencePlugin
+org.cai.biopanda.plugin.RNASequencePlugin

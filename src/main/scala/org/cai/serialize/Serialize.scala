@@ -1,8 +1,8 @@
 package org.cai.serialize
 
 import org.cai.biopanda.sequence.BioSequenceEnum.{BioSequenceType, DNA, Protein, RNA}
+import org.cai.serialize.StreamUtils.{int2BytesArray, long2ByteArray}
 import org.grapheco.pandadb.plugin.typesystem.AnyType
-import serialize.StreamUtils.{int2BytesArray, long2ByteArray}
 
 import java.io.{ByteArrayOutputStream, ObjectOutputStream}
 import java.nio.ByteBuffer

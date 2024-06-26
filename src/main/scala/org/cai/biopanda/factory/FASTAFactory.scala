@@ -4,11 +4,11 @@ import org.cai.biopanda.extensiontype.FASTAType
 import org.cai.biopanda.sequence.BioSequenceEnum.{BioSequenceType, DNA, Protein, RNA}
 import org.cai.biopanda.sequence.{FASTA, FASTAImpl}
 import org.cai.exception.BioSequenceTypeException
+import org.cai.serialize.DeSerialize.decodeFASTA
+import org.cai.store.StoreSequence
+import org.cai.utils.file.{FileNormalize, FileProcess}
 import org.grapheco.lynx.types.LynxType
 import org.grapheco.pandadb.plugin.typesystem.TypeFactory
-import serialize.DeSerialize.decodeFASTA
-import store.StoreSequence
-import utils.file.{FileNormalize, FileProcess}
 
 import java.io.{BufferedWriter, FileWriter}
 import java.nio.charset.StandardCharsets
