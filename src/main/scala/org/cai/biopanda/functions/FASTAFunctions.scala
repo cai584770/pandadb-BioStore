@@ -2,9 +2,11 @@ package org.cai.biopanda.functions
 
 import org.biojava.nbio.core.alignment.template.SequencePair
 import org.biojava.nbio.core.sequence.compound.NucleotideCompound
-import org.grapheco.lynx.func.LynxProcedure
+import org.cai.align.Align
+import org.cai.biopanda.factory.FASTAFactory
+import org.cai.biopanda.sequence.FASTA
+import org.grapheco.lynx.func.{LynxProcedure, LynxProcedureArgument}
 import org.grapheco.lynx.types.property.LynxString
-import org.grapheco.pandadb.plugin.annotations.UDFCollection
 import org.grapheco.pandadb.plugin.typesystem.TypeFunctions
 
 /**
@@ -15,23 +17,23 @@ import org.grapheco.pandadb.plugin.typesystem.TypeFunctions
 class FASTAFunctions extends TypeFunctions {
 
   @LynxProcedure(name = "FASTA.fromFile")
-  def fromFile(filePath: LynxString): FASTA = {
-    FASTA.fromFile(filePath.value)
+  def fromFile(@LynxProcedureArgument(name = "filePath") filePath: LynxString): FASTA = {
+    FASTAFactory.fromFile(filePath.value)
   }
 
   @LynxProcedure(name = "FASTA.export")
-  def export(fasta: FASTA, filePath: String): Unit = {
-    FASTA.export(fasta, filePath)
+  def export(@LynxProcedureArgument(name = "fasta") fasta: FASTA, @LynxProcedureArgument(name = "filePath") filePath: String): Unit = {
+    FASTAFactory.export(fasta, filePath)
   }
 
   @LynxProcedure(name = "FASTA.getSupplyInformation")
-  def getSupplyInformation(fasta: FASTA): Map[String, List[(Any, Any)]] = {
-    fasta.supplyInformation.getOrElse(Map.empty)
+  def getSupplyInformation(@LynxProcedureArgument(name = "fasta") fasta: FASTA): Map[String, List[(Any, Any)]] = {
+    fasta.getSupplyInformation.getOrElse(Map.empty)
   }
 
   @LynxProcedure(name = "FASTA.length")
-  def length(fasta: FASTA): Long = {
-    val lengthList = fasta.supplyInformation
+  def length(@LynxProcedureArgument(name = "fasta") fasta: FASTA): Long = {
+    val lengthList = fasta.getSupplyInformation
       .flatMap(_.get("Length"))
       .collect {
         case list: List[(Int, Int)] if list.nonEmpty => list
@@ -44,13 +46,13 @@ class FASTAFunctions extends TypeFunctions {
   }
 
   @LynxProcedure(name = "FASTA.getInformation")
-  def getInformation(fasta: FASTA): String = {
-    fasta.information
+  def getInformation(@LynxProcedureArgument(name = "fasta") fasta: FASTA): String = {
+    fasta.getInformation
   }
 
   @LynxProcedure(name = "FASTA.getLowerCasePosition")
-  def getLowerCasePosition(fasta: FASTA): List[(Int, Int)] = {
-    fasta.supplyInformation
+  def getLowerCasePosition(@LynxProcedureArgument(name = "fasta") fasta: FASTA): List[(Int, Int)] = {
+    fasta.getSupplyInformation
       .flatMap(_.get("LowerCasePosition"))
       .collect {
         case list: List[(Int, Int)] if list.nonEmpty => list
@@ -61,8 +63,8 @@ class FASTAFunctions extends TypeFunctions {
   }
 
   @LynxProcedure(name = "FASTA.getNCasePosition")
-  def getNCasePosition(fasta: FASTA): List[(Int, Int)] = {
-    fasta.supplyInformation
+  def getNCasePosition(@LynxProcedureArgument(name = "fasta") fasta: FASTA): List[(Int, Int)] = {
+    fasta.getSupplyInformation
       .flatMap(_.get("NCasePosition"))
       .collect {
         case list: List[(Int, Int)] if list.nonEmpty => list
@@ -72,8 +74,8 @@ class FASTAFunctions extends TypeFunctions {
   }
 
   @LynxProcedure(name = "FASTA.getNonAGCTCasePosition")
-  def getNonAGCTCasePosition(fasta: FASTA): List[(Int, String)] = {
-    fasta.supplyInformation
+  def getNonAGCTCasePosition(@LynxProcedureArgument(name = "fasta") fasta: FASTA): List[(Int, String)] = {
+    fasta.getSupplyInformation
       .flatMap(_.get("OtherCaseList"))
       .collect {
         case list: List[(Int, String)] if list.nonEmpty => list
@@ -85,14 +87,14 @@ class FASTAFunctions extends TypeFunctions {
 
 
   @LynxProcedure(name = "FASTA.local")
-  def local(query: String, fasta: FASTA): SequencePair[org.biojava.nbio.core.sequence.DNASequence, NucleotideCompound] = {
+  def local(@LynxProcedureArgument(name = "query") query: String, @LynxProcedureArgument(name = "fasta") fasta: FASTA): SequencePair[org.biojava.nbio.core.sequence.DNASequence, NucleotideCompound] = {
 
     Align.local(query, fasta)
 
   }
 
   @LynxProcedure(name = "FASTA.global")
-  def global(query: String, fasta: FASTA): SequencePair[org.biojava.nbio.core.sequence.DNASequence, NucleotideCompound] = {
+  def global(@LynxProcedureArgument(name = "query") query: String, @LynxProcedureArgument(name = "fasta") fasta: FASTA): SequencePair[org.biojava.nbio.core.sequence.DNASequence, NucleotideCompound] = {
 
     Align.global(query, fasta)
   }

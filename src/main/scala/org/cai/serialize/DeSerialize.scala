@@ -1,8 +1,9 @@
-package serialize
+package org.cai.serialize
 
 import org.cai.biopanda.sequence.BioSequenceEnum.{DNA, Protein, RNA}
 import org.cai.biopanda.sequence.{BioSequence, FASTA, FASTAImpl}
 import org.cai.exception.BioSequenceTypeException
+import org.grapheco.pandadb.plugin.typesystem.AnyType
 
 import java.io.{ByteArrayInputStream, ObjectInputStream}
 import java.nio.ByteBuffer
@@ -51,18 +52,5 @@ object DeSerialize {
     new String(bytes, "UTF-8")
   }
 
-  def bytesToSeq[T <: AnyType](buffer: ByteBuffer, length: Int, prototype: T): Seq[T] = {
-    val endPosition = buffer.position() + length
-    var seq: Seq[T] = Seq()
-
-    while (buffer.position() < endPosition) {
-      val itemLength = buffer.getInt
-      val itemBytes = new Array[Byte](itemLength)
-      buffer.get(itemBytes)
-      seq = seq :+ prototype.deserialize(itemBytes).asInstanceOf[T]
-    }
-
-    seq
-  }
 
 }

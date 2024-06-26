@@ -1,9 +1,10 @@
-package utils.file
+package org.cai.utils.file
+
+import org.cai.utils.file.FileNormalize.{normalize, remove}
 
 import java.io.{File, PrintWriter}
 import java.nio.file.{Files, Paths, StandardOpenOption}
 import scala.io.Source
-import FileNormalize.{normalize, remove}
 
 /** todo
  * @author cai584770

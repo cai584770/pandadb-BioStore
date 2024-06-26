@@ -1,4 +1,4 @@
-package search
+package org.cai.search
 
 /**
  * @author cai584770

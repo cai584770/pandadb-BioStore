@@ -1,7 +1,8 @@
 package org.cai.biopanda.functions
 
 import org.cai.biopanda.factory.DNASequenceFactory
-import org.cai.biopanda.sequence.DNASequence
+import org.cai.biopanda.sequence.BioSequenceEnum.BioSequenceType
+import org.cai.biopanda.sequence.{DNASequence, FASTA}
 import org.grapheco.lynx.func.{LynxProcedure, LynxProcedureArgument}
 import org.grapheco.lynx.types.composite.LynxList
 import org.grapheco.lynx.types.property.LynxString
@@ -31,14 +32,18 @@ class DNASequenceFunctions extends TypeFunctions{
   }
 
   @LynxProcedure(name = "DNASequence.fromFASTA")
-  def fromFASTA(filePath: LynxString): DNASequence = {
-    DNASequenceFactory.fromFile(filePath.value)
+  def fromFASTA(@LynxProcedureArgument(name="fasta") fasta: FASTA): DNASequence = {
+    DNASequenceFactory.fromFASTA(fasta)
   }
 
   @LynxProcedure(name = "DNASequence.length")
-  def length(dnaSequence: DNASequence): Long = {
+  def length(@LynxProcedureArgument(name="dnaSequence") dnaSequence: DNASequence): Long = {
     dnaSequence.getSequence.length
   }
 
+  @LynxProcedure(name = "DNASequence.bioType")
+  def bioType(@LynxProcedureArgument(name="dnaSequence") dnaSequence: DNASequence): BioSequenceType = {
+    dnaSequence.getBioSequenceType
+  }
 
 }

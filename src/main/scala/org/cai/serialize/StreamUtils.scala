@@ -1,4 +1,4 @@
-package serialize
+package org.cai.serialize
 
 import java.io.{ByteArrayOutputStream, InputStream}
 import java.nio.ByteBuffer

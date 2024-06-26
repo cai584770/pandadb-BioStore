@@ -1,9 +1,8 @@
-package store
+package org.cai.store
 
-import biopanda.sequence.BioSequenceType.{BioSequenceType, DNA}
-import biopanda.sequence.BioSequenceType
+import org.cai.biopanda.sequence.BioSequenceEnum.{BioSequenceType, DNA, RNA}
 import org.cai.exception.BioSequenceTypeException
-import utils.file.FileNormalize
+import org.cai.utils.file.FileNormalize
 
 import scala.collection.mutable.ListBuffer
 
@@ -22,7 +21,7 @@ object StoreSequence {
    *         "OtherCaseList" -> otherCaseList
    *         Array[Byte] -> AGCT binary array
    */
-  def to2bit(data: String,bioSequenceType: BioSequenceType = BioSequenceType.DNA): (Map[String, List[(Any, Any)]], Array[Byte]) = {
+  def to2bit(data: String, bioSequenceType: BioSequenceType = DNA): (Map[String, List[(Any, Any)]], Array[Byte]) = {
     val sequence = FileNormalize.remove(data)
     val sequenceLength = sequence.length
 
@@ -31,9 +30,9 @@ object StoreSequence {
     val (agctSequence, otherCaseList) = removeAndRecord(noNSequence)
 
     val agctSequenceLength = agctSequence.length
-    val lengthList = List((sequenceLength,agctSequenceLength))
+    val lengthList = List((sequenceLength, agctSequenceLength))
 
-    val sequence2bit =  convertToBinaryArray(agctSequence, bioSequenceType)
+    val sequence2bit = convertToBinaryArray(agctSequence, bioSequenceType)
 
     val supplementaryInformation = Map(
       "LowerCasePosition" -> lowerCaseList,
@@ -53,7 +52,7 @@ object StoreSequence {
   def convertToBinaryArray(s: String, bioSequenceType: BioSequenceType): Array[Byte] = {
     val conversionMap = bioSequenceType match {
       case DNA => Map('A' -> "00", 'G' -> "01", 'C' -> "10", 'T' -> "11")
-      case BioSequenceType.RNA => Map('A' -> "00", 'G' -> "01", 'C' -> "10", 'U' -> "11")
+      case RNA => Map('A' -> "00", 'G' -> "01", 'C' -> "10", 'U' -> "11")
       case _ => throw new BioSequenceTypeException
     }
 
@@ -201,7 +200,6 @@ object StoreSequence {
 
     (sequenceBuilder.toString(), result.toList)
   }
-
 
 
 }

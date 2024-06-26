@@ -1,4 +1,4 @@
-package store
+package org.cai.store
 
 
 import org.cai.biopanda.sequence.BioSequenceEnum.{BioSequenceType, DNA, RNA}

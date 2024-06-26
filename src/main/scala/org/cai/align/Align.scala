@@ -1,4 +1,14 @@
-package org.cai
+package org.cai.align
+
+import org.biojava.nbio.alignment.Alignments.PairwiseSequenceAlignerType
+import org.biojava.nbio.alignment.{Alignments, SimpleGapPenalty}
+import org.biojava.nbio.core.alignment.matrices.SubstitutionMatrixHelper
+import org.biojava.nbio.core.alignment.template.{SequencePair, SubstitutionMatrix}
+import org.biojava.nbio.core.sequence.DNASequence
+import org.biojava.nbio.core.sequence.compound.NucleotideCompound
+import org.cai.biopanda.sequence.BioSequenceEnum.DNA
+import org.cai.biopanda.sequence.FASTA
+import org.cai.exception.{AlignNotFoundException, BioSequenceTypeException}
 
 /**
  * @author cai584770
@@ -8,8 +18,8 @@ package org.cai
 object Align {
 
   def local(querySequence: String, targetGeneSequence: FASTA): SequencePair[DNASequence, NucleotideCompound] = {
-    val (target, query) = targetGeneSequence.bioSequenceType match {
-      case BioSequenceType.DNA => (new DNASequence(targetGeneSequence.getSequence), new DNASequence(querySequence))
+    val (target, query) = targetGeneSequence.getBioSequenceType match {
+      case DNA => (new DNASequence(targetGeneSequence.getSequence), new DNASequence(querySequence))
       case _ => throw new BioSequenceTypeException
     }
 
@@ -28,8 +38,8 @@ object Align {
   }
 
   def global(querySequence: String, targetGeneSequence: FASTA): SequencePair[DNASequence, NucleotideCompound] = {
-    val (target, query) = targetGeneSequence.bioSequenceType match {
-      case BioSequenceType.DNA => (new DNASequence(targetGeneSequence.getSequence), new DNASequence(querySequence))
+    val (target, query) = targetGeneSequence.getSequence match {
+      case DNA => (new DNASequence(targetGeneSequence.getSequence), new DNASequence(querySequence))
       case _ => throw new BioSequenceTypeException
     }
 

@@ -1,7 +1,6 @@
-package serialize
+package org.cai.serialize
 
 import org.cai.biopanda.sequence.BioSequenceEnum.{BioSequenceType, DNA, Protein, RNA}
-import org.cai.biopanda.sequence.FASTAImpl
 import org.grapheco.pandadb.plugin.typesystem.AnyType
 import serialize.StreamUtils.{int2BytesArray, long2ByteArray}
 

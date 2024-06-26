@@ -1,6 +1,6 @@
-package utils.file
+package org.cai.utils.file
 
-import java.io.{File, FileInputStream, FileOutputStream, IOException, OutputStreamWriter}
+import java.io.{FileInputStream, FileOutputStream, IOException}
 
 /**
  * @author cai584770

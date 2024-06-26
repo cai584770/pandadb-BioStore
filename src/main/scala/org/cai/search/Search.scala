@@ -1,4 +1,4 @@
-package search
+package org.cai.search
 
 import org.biojava.nbio.alignment.Alignments.PairwiseSequenceAlignerType
 import org.biojava.nbio.alignment.{Alignments, SimpleGapPenalty}
