@@ -22,8 +22,8 @@ class FASTAFunctions extends TypeFunctions {
   }
 
   @LynxProcedure(name = "FASTA.export")
-  def export(@LynxProcedureArgument(name = "fasta") fasta: FASTA, @LynxProcedureArgument(name = "filePath") filePath: String): Unit = {
-    FASTAFactory.export(fasta, filePath)
+  def export(@LynxProcedureArgument(name = "fasta") fasta: FASTA, @LynxProcedureArgument(name = "filePath") filePath: LynxString): Unit = {
+    FASTAFactory.export(fasta, filePath.value)
   }
 
   @LynxProcedure(name = "FASTA.getSupplyInformation")

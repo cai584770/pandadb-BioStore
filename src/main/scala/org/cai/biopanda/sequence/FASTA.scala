@@ -68,7 +68,7 @@ abstract class FASTA extends AnyType with HasProperty {
 
   override def toString: String = s"FASTA(information=${getInformation},type=${getBioSequenceType}),length=${
     getSupplyInformation.flatMap { map =>
-      map.get("length").flatMap {
+      map.get("Length").flatMap {
         case (firstValue, _) :: _ => Some(firstValue)
         case Nil => None
       }

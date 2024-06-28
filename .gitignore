@@ -9,3 +9,4 @@
 *.vcf
 *.bcf
 *.sra
+.idea/artifacts/BioStore.jar

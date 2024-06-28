@@ -40,6 +40,7 @@ object ReStoreSequence {
 
     val binaryString = convertFromBinaryArray(binaryArray, bioSequenceType)
     println(f"length:${lengthList.head._2}")
+//    println(binaryString)
     val agctSequence = binaryString.substring(0, lengthList.head._2)
 
     val haveNoCaseSequence = insertNonACGT(agctSequence, otherCaseList)
